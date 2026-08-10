@@ -93,30 +93,76 @@ document.addEventListener('DOMContentLoaded', () => {
 
   let gamesPS4 = [];
 
-  // Ambil database game PS4
+ <script>
+document.addEventListener('DOMContentLoaded', () => {
+
+  const searchInput = document.getElementById('gameSearchPS4');
+  const resultsBox = document.getElementById('gameResultsPS4');
+  const infoBox = document.getElementById('gameSearchInfo');
+
+  let gamesPS4 = [];
+  let databaseReady = false;
+
+  // Jangan izinkan pencarian sebelum database selesai dimuat
+  searchInput.disabled = true;
+  searchInput.placeholder = 'Memuat database game PS4...';
+
   fetch('/games-ps4.json')
     .then(response => {
+
       if (!response.ok) {
-        throw new Error('Database game tidak dapat dimuat');
+        throw new Error(
+          `HTTP ${response.status} - games-ps4.json tidak ditemukan`
+        );
       }
 
       return response.json();
     })
+
     .then(data => {
+
+      if (!Array.isArray(data)) {
+        throw new Error('Format games-ps4.json tidak valid');
+      }
+
       gamesPS4 = data;
+      databaseReady = true;
+
+      searchInput.disabled = false;
+      searchInput.placeholder =
+        'Cari game PS4, contoh: GTA, FIFA, Tekken...';
 
       infoBox.textContent =
-        `${gamesPS4.length.toLocaleString('id-ID')} game PS4 tersedia dalam database. Ketik nama game untuk mencari.`;
+        `${gamesPS4.length.toLocaleString('id-ID')} game PS4 tersedia. Ketik minimal 2 huruf untuk mencari.`;
+
+      console.log(
+        'Database PS4 berhasil dimuat:',
+        gamesPS4.length,
+        'game'
+      );
     })
+
     .catch(error => {
-      console.error(error);
+
+      console.error('ERROR DATABASE PS4:', error);
+
+      databaseReady = false;
+      searchInput.disabled = true;
 
       infoBox.textContent =
-        'Daftar game sementara tidak dapat dimuat.';
+        'Database game PS4 gagal dimuat. Periksa file games-ps4.json.';
     });
 
 
-  // Membuat satu hasil game
+  function normalisasi(text) {
+    return String(text || '')
+      .normalize('NFKD')
+      .replace(/[\u200B-\u200D\uFEFF]/g, '')
+      .toLowerCase()
+      .trim();
+  }
+
+
   function createGameItem(game) {
 
     const item = document.createElement('div');
@@ -137,39 +183,50 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 
-  // Proses pencarian
   searchInput.addEventListener('input', () => {
 
-    const keyword = searchInput.value
-      .trim()
-      .toLowerCase();
+    // Database belum siap
+    if (!databaseReady) {
+      infoBox.textContent =
+        'Database game sedang dimuat...';
+      return;
+    }
+
+    const keywordAsli = searchInput.value.trim();
+    const keyword = normalisasi(keywordAsli);
 
     resultsBox.innerHTML = '';
 
-    // Jangan tampilkan semua 6400 game
+
     if (keyword.length < 2) {
 
       infoBox.textContent =
-        gamesPS4.length
-          ? `${gamesPS4.length.toLocaleString('id-ID')} game PS4 tersedia. Ketik minimal 2 huruf untuk mencari.`
-          : 'Memuat database game...';
+        `${gamesPS4.length.toLocaleString('id-ID')} game PS4 tersedia. Ketik minimal 2 huruf untuk mencari.`;
 
       return;
     }
 
 
-    const hasil = gamesPS4.filter(game =>
-      game.nama.toLowerCase().includes(keyword)
-    );
+    const hasil = gamesPS4.filter(game => {
+
+      const namaGame =
+        typeof game === 'string'
+          ? game
+          : game.nama;
+
+      return normalisasi(namaGame).includes(keyword);
+
+    });
 
 
     if (hasil.length === 0) {
 
       infoBox.textContent =
-        `Tidak ditemukan game untuk "${searchInput.value.trim()}".`;
+        `Tidak ditemukan game untuk "${keywordAsli}".`;
 
       const empty = document.createElement('div');
       empty.className = 'game-empty';
+
       empty.textContent =
         'Game tidak ditemukan. Coba gunakan kata pencarian lain.';
 
@@ -183,9 +240,31 @@ document.addEventListener('DOMContentLoaded', () => {
       `${hasil.length.toLocaleString('id-ID')} game ditemukan.`;
 
 
-    // Maksimal 30 hasil agar halaman tetap ringan
     hasil.slice(0, 30).forEach(game => {
-      resultsBox.appendChild(createGameItem(game));
+
+      // Mendukung JSON object maupun string
+      if (typeof game === 'string') {
+
+        createGameItem({
+          nama: game,
+          platform: 'PS4'
+        });
+
+        resultsBox.appendChild(
+          createGameItem({
+            nama: game,
+            platform: 'PS4'
+          })
+        );
+
+      } else {
+
+        resultsBox.appendChild(
+          createGameItem(game)
+        );
+
+      }
+
     });
 
 
@@ -195,7 +274,7 @@ document.addEventListener('DOMContentLoaded', () => {
       more.className = 'game-empty';
 
       more.textContent =
-        `Ada ${hasil.length.toLocaleString('id-ID')} hasil. Ketik nama game lebih spesifik untuk mempersempit pencarian.`;
+        `${hasil.length.toLocaleString('id-ID')} hasil ditemukan. Ketik lebih spesifik untuk mempersempit pencarian.`;
 
       resultsBox.appendChild(more);
     }
