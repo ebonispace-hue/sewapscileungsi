@@ -84,7 +84,9 @@
 <div class="modal" id="modal-weekend" aria-hidden="true"><div class="modal-box"><button class="modal-close" type="button" aria-label="Tutup">×</button><div class="modal-grid"><img src="./weekend.png" loading="lazy" decoding="async" alt="Detail Promo Happy Weekend PS4"><div class="modal-copy"><p class="eyebrow">Promo Happy Weekend</p><h3>Promo Sewa Unit PS4</h3><p>Promo akhir pekan untuk sewa PS4 dengan periode dari Jumat pukul 16.00 sampai Minggu pukul 23.00.</p><ul><li>Harga promo: Rp200.000.</li><li>Berlaku untuk unit PS4 sesuai ketersediaan.</li><li>Booking dan jadwal pengantaran dikonfirmasi melalui WhatsApp admin.</li><li>Biaya antar dapat menyesuaikan lokasi.</li></ul><div class="notice"><strong>Ketentuan penting:</strong><br>Promo Happy Weekend tidak dapat digabung dengan promo lainnya, termasuk diskon 15%.</div><div class="modal-actions"><a class="button primary" href="https://wa.me/6287816546467?text=Halo%20Eboni%20Space%2C%20saya%20mau%20booking%20Promo%20Happy%20Weekend%20PS4." target="_blank" rel="noopener">Booking via WhatsApp</a></div></div></div></div></div>
 <div class="modal" id="modal-diskon" aria-hidden="true"><div class="modal-box"><button class="modal-close" type="button" aria-label="Tutup">×</button><div class="modal-grid"><img src="./15.png" loading="lazy" decoding="async" alt="Detail Promo Diskon Spesial 15 Persen"><div class="modal-copy"><p class="eyebrow">Diskon Spesial</p><h3>Diskon 15% untuk Sewa PS</h3><p>Dapatkan potongan 15% untuk sewa PS sesuai periode promo, jenis sewa, dan ketersediaan unit yang dikonfirmasi admin.</p><ul><li>Potongan harga: 15%.</li><li>Berlaku sesuai periode promo dan ketersediaan unit.</li><li>Konfirmasi harga akhir dan unit melalui WhatsApp admin.</li><li>Biaya antar dapat menyesuaikan lokasi.</li></ul><div class="notice"><strong>Ketentuan penting:</strong><br>Promo diskon 15% tidak dapat digabung dengan promo lainnya, termasuk Happy Weekend.</div><div class="modal-actions"><a class="button primary" href="https://wa.me/6287816546467?text=Halo%20Eboni%20Space%2C%20saya%20mau%20pakai%20promo%20diskon%2015%25%20untuk%20sewa%20PS." target="_blank" rel="noopener">Booking via WhatsApp</a></div></div></div></div></div>
 <script>document.getElementById('year').textContent=new Date().getFullYear();const promoMap={weekend:'modal-weekend',diskon:'modal-diskon'};document.querySelectorAll('[data-promo]').forEach(el=>el.addEventListener('click',()=>{const modal=document.getElementById(promoMap[el.dataset.promo]);if(modal){modal.classList.add('open');modal.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';}}));document.querySelectorAll('.modal').forEach(modal=>{modal.querySelector('.modal-close').addEventListener('click',()=>{modal.classList.remove('open');modal.setAttribute('aria-hidden','true');document.body.style.overflow='';});modal.addEventListener('click',e=>{if(e.target===modal){modal.classList.remove('open');modal.setAttribute('aria-hidden','true');document.body.style.overflow='';}});});document.addEventListener('keydown',e=>{if(e.key==='Escape')document.querySelectorAll('.modal.open').forEach(modal=>{modal.classList.remove('open');modal.setAttribute('aria-hidden','true');document.body.style.overflow='';});});</script>
-<script>
+
+
+  <script>
 document.addEventListener('DOMContentLoaded', () => {
 
   const searchInput = document.getElementById('gameSearchPS4');
@@ -92,187 +94,29 @@ document.addEventListener('DOMContentLoaded', () => {
   const infoBox = document.getElementById('gameSearchInfo');
 
   let gamesPS4 = [];
-  let databaseReady = false;
 
-  // Jangan izinkan pencarian sebelum database selesai dimuat
-  searchInput.disabled = true;
-  searchInput.placeholder = 'Memuat database game PS4...';
-
-  fetch('/games-ps4.json')
+  fetch('/games.json')
     .then(response => {
-
       if (!response.ok) {
-        throw new Error(
-          `HTTP ${response.status} - games-ps4.json tidak ditemukan`
-        );
+        throw new Error('games.json tidak ditemukan');
       }
 
       return response.json();
     })
-
     .then(data => {
-
-      if (!Array.isArray(data)) {
-        throw new Error('Format games-ps4.json tidak valid');
-      }
-
       gamesPS4 = data;
-      databaseReady = true;
-
-      searchInput.disabled = false;
-      searchInput.placeholder =
-        'Cari game PS4, contoh: GTA, FIFA, Tekken...';
 
       infoBox.textContent =
-        `${gamesPS4.length.toLocaleString('id-ID')} game PS4 tersedia. Ketik minimal 2 huruf untuk mencari.`;
-
-      console.log(
-        'Database PS4 berhasil dimuat:',
-        gamesPS4.length,
-        'game'
-      );
+        `${gamesPS4.length.toLocaleString('id-ID')} game PS4 tersedia.`;
     })
-
     .catch(error => {
-
-      console.error('ERROR DATABASE PS4:', error);
-
-      databaseReady = false;
-      searchInput.disabled = true;
-
-      infoBox.textContent =
-        'Database game PS4 gagal dimuat. Periksa file games-ps4.json.';
+      console.error(error);
+      infoBox.textContent = 'Database game gagal dimuat.';
     });
-
-
-  function normalisasi(text) {
-    return String(text || '')
-      .normalize('NFKD')
-      .replace(/[\u200B-\u200D\uFEFF]/g, '')
-      .toLowerCase()
-      .trim();
-  }
-
-
-  function createGameItem(game) {
-
-    const item = document.createElement('div');
-    item.className = 'game-item';
-
-    const name = document.createElement('span');
-    name.className = 'game-name';
-    name.textContent = game.nama;
-
-    const platform = document.createElement('span');
-    platform.className = 'game-platform';
-    platform.textContent = game.platform || 'PS4';
-
-    item.appendChild(name);
-    item.appendChild(platform);
-
-    return item;
-  }
-
-
-  searchInput.addEventListener('input', () => {
-
-    // Database belum siap
-    if (!databaseReady) {
-      infoBox.textContent =
-        'Database game sedang dimuat...';
-      return;
-    }
-
-    const keywordAsli = searchInput.value.trim();
-    const keyword = normalisasi(keywordAsli);
-
-    resultsBox.innerHTML = '';
-
-
-    if (keyword.length < 2) {
-
-      infoBox.textContent =
-        `${gamesPS4.length.toLocaleString('id-ID')} game PS4 tersedia. Ketik minimal 2 huruf untuk mencari.`;
-
-      return;
-    }
-
-
-    const hasil = gamesPS4.filter(game => {
-
-      const namaGame =
-        typeof game === 'string'
-          ? game
-          : game.nama;
-
-      return normalisasi(namaGame).includes(keyword);
-
-    });
-
-
-    if (hasil.length === 0) {
-
-      infoBox.textContent =
-        `Tidak ditemukan game untuk "${keywordAsli}".`;
-
-      const empty = document.createElement('div');
-      empty.className = 'game-empty';
-
-      empty.textContent =
-        'Game tidak ditemukan. Coba gunakan kata pencarian lain.';
-
-      resultsBox.appendChild(empty);
-
-      return;
-    }
-
-
-    infoBox.textContent =
-      `${hasil.length.toLocaleString('id-ID')} game ditemukan.`;
-
-
-    hasil.slice(0, 30).forEach(game => {
-
-      // Mendukung JSON object maupun string
-      if (typeof game === 'string') {
-
-        createGameItem({
-          nama: game,
-          platform: 'PS4'
-        });
-
-        resultsBox.appendChild(
-          createGameItem({
-            nama: game,
-            platform: 'PS4'
-          })
-        );
-
-      } else {
-
-        resultsBox.appendChild(
-          createGameItem(game)
-        );
-
-      }
-
-    });
-
-
-    if (hasil.length > 30) {
-
-      const more = document.createElement('div');
-      more.className = 'game-empty';
-
-      more.textContent =
-        `${hasil.length.toLocaleString('id-ID')} hasil ditemukan. Ketik lebih spesifik untuk mempersempit pencarian.`;
-
-      resultsBox.appendChild(more);
-    }
-
-  });
 
 });
 </script>
+
+  
 </body>
 </html>
