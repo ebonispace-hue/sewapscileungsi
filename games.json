@@ -4076,7 +4076,7 @@
     "platform": "PS4"
   },
   {
-    "nama": "Chou Kousoku Grandoll [Premium Edition]",
+    "nama": "Chou Kousoku Grandoll Premium Edition",
     "platform": "PS4"
   },
   {
@@ -4568,7 +4568,7 @@
     "platform": "PS4"
   },
   {
-    "nama": "Cotton 100% [Superlite 1500 Series]",
+    "nama": "Cotton 100% Superlite 1500 Series",
     "platform": "PS4"
   },
   {
@@ -16100,27 +16100,27 @@
     "platform": "PS4"
   },
   {
-    "nama": "Pro Evolution Soccer 2015 [PES 2015]",
+    "nama": "Pro Evolution Soccer 2015 PES 2015",
     "platform": "PS4"
   },
   {
-    "nama": "Pro Evolution Soccer 2016 [PES 2016]",
+    "nama": "Pro Evolution Soccer 2016 PES 2016",
     "platform": "PS4"
   },
   {
-    "nama": "Pro Evolution Soccer 2017 [PES 2017]",
+    "nama": "Pro Evolution Soccer 2017 PES 2017",
     "platform": "PS4"
   },
   {
-    "nama": "Pro Evolution Soccer 2018 [PES 2018]",
+    "nama": "Pro Evolution Soccer 2018 PES 2018",
     "platform": "PS4"
   },
   {
-    "nama": "Pro Evolution Soccer 2019 [PES 2019]",
+    "nama": "Pro Evolution Soccer 2019 PES 2019",
     "platform": "PS4"
   },
   {
-    "nama": "Pro Evolution Soccer 6 [PES 6]",
+    "nama": "Pro Evolution Soccer 6 PES 6",
     "platform": "PS4"
   },
   {
@@ -18116,7 +18116,7 @@
     "platform": "PS4"
   },
   {
-    "nama": "Senuas Saga Hellblade 2 [HomeBrew]",
+    "nama": "Senuas Saga Hellblade 2 HomeBrew",
     "platform": "PS4"
   },
   {
@@ -21384,7 +21384,7 @@
     "platform": "PS4"
   },
   {
-    "nama": "The Eternal Castle [Remastered]",
+    "nama": "The Eternal Castle Remastered",
     "platform": "PS4"
   },
   {
@@ -23832,11 +23832,11 @@
     "platform": "PS4"
   },
   {
-    "nama": "Under Night in Birth Exe Late[cl-r]",
+    "nama": "Under Night in Birth Exe Latecl-r",
     "platform": "PS4"
   },
   {
-    "nama": "Under Night In Birth Exe Late[st]",
+    "nama": "Under Night In Birth Exe Latest",
     "platform": "PS4"
   },
   {
@@ -29027,7 +29027,6 @@
     "nama": "Ys X Proud Nordics",
     "platform": "PS5"
   }
-]
 
 
 
@@ -29038,7 +29037,8 @@
 
 
 
-[
+
+
   {
     "nama": "#RaceDieRun",
     "platform": "Nintendo Switch"
@@ -91271,4 +91271,6 @@
     "nama": "鉄道にっぽん! RealPro 長距離運転!特急ひのとり 近畿日本鉄道 編",
     "platform": "Nintendo Switch"
   }
+
 ]
+
