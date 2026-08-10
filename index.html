@@ -60,6 +60,81 @@
   border-radius:14px;
   color:#aeb1b7;
 }
+    /* SEARCH GAME */
+.game-search-box{
+  width:100%;
+  max-width:920px;
+  margin:32px auto 0;
+}
+
+.game-search-input-wrap{
+  position:relative;
+  width:100%;
+  padding:2px;
+  border-radius:18px;
+  background:linear-gradient(
+    90deg,
+    #b7f54a,
+    #64f58d,
+    #b7f54a
+  );
+  box-shadow:
+    0 8px 30px rgba(183,245,74,.10),
+    0 0 18px rgba(183,245,74,.10);
+}
+
+.game-search-input{
+  width:100%;
+  height:62px;
+  padding:0 60px 0 22px;
+  border:0;
+  border-radius:16px;
+  background:linear-gradient(135deg,#19191e,#101014);
+  color:#fff;
+  font:inherit;
+  font-size:16px;
+  font-weight:600;
+  outline:none;
+}
+
+.game-search-input::placeholder{
+  color:#92929b;
+  font-weight:500;
+}
+
+.game-search-input:focus{
+  background:#17171c;
+  box-shadow:
+    inset 0 0 0 1px rgba(183,245,74,.30),
+    0 0 25px rgba(183,245,74,.12);
+}
+
+.game-search-icon{
+  position:absolute;
+  right:21px;
+  top:50%;
+  transform:translateY(-50%);
+  font-size:21px;
+  pointer-events:none;
+}
+
+.game-search-info{
+  margin-top:12px;
+  padding-left:4px;
+  color:#b5b5bd;
+  font-size:14px;
+}
+
+@media(max-width:780px){
+  .game-search-box{
+    max-width:100%;
+  }
+
+  .game-search-input{
+    height:56px;
+    font-size:15px;
+  }
+}
   </style>
 </head>
 <body>
