@@ -25,11 +25,23 @@
     a{color:inherit;text-decoration:none}
     .wrap{width:min(1120px,calc(100% - 40px));margin:auto}
     .nav{position:sticky;top:0;z-index:10;background:rgba(9,9,11,.9);border-bottom:1px solid rgba(255,255,255,.07);backdrop-filter:blur(14px)}
-    .nav .wrap{min-height:70px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .nav .wrap{position:relative;min-height:70px;display:flex;align-items:center;justify-content:space-between;gap:16px}
     .brand{display:flex;align-items:center;gap:10px;font-weight:850;letter-spacing:.08em}
     .brand-logo{width:32px;height:32px;display:block;flex:0 0 32px;object-fit:cover;border-radius:50%;border:2px solid var(--green);background:#151519}
-    .nav-links{display:flex;gap:20px;font-size:14px;color:var(--muted)}
-    .nav-links a:hover{color:var(--green)}
+    .menu-toggle{width:46px;height:46px;display:grid;align-content:center;gap:5px;padding:0 11px;border:1px solid #45454f;border-radius:14px;background:#151519;cursor:pointer;transition:.2s ease}
+    .menu-toggle:hover{border-color:var(--green);box-shadow:0 0 0 6px rgba(183,245,74,.08)}
+    .menu-toggle span{display:block;width:100%;height:2px;border-radius:999px;background:var(--green);transition:transform .25s ease,opacity .2s ease}
+    .menu-toggle.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+    .menu-toggle.open span:nth-child(2){opacity:0}
+    .menu-toggle.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+    .popup-menu{position:absolute;top:calc(100% + 10px);right:0;width:min(310px,calc(100vw - 40px));display:none;padding:10px;background:linear-gradient(145deg,#1a1a20,#121216);border:1px solid #3b4930;border-radius:18px;box-shadow:0 20px 55px rgba(0,0,0,.48)}
+    .popup-menu.open{display:grid;animation:menuIn .2s ease-out}
+    .popup-menu a{padding:12px 14px;border-radius:11px;color:var(--text);font-weight:700}
+    .popup-menu a:hover{background:rgba(183,245,74,.10);color:var(--green)}
+    .popup-menu .popup-price{margin-top:3px;background:var(--green);color:#10130c;text-align:center}
+    .popup-menu .popup-price:hover{background:#c9ff6b;color:#10130c}
+    .popup-menu .popup-wa{margin-top:8px;border:1px solid #45454f;text-align:center}
+    @keyframes menuIn{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
     .button{position:relative;overflow:hidden;display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:13px 19px;border:1px solid transparent;border-radius:999px;font-weight:750;transition:transform .2s ease,border-color .2s ease,color .2s ease,background .2s ease;cursor:pointer}
     .button::after{content:"";position:absolute;top:-80%;left:-45%;width:24%;height:260%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.42),transparent);transform:rotate(25deg);pointer-events:none;animation:buttonShine 3.4s ease-in-out infinite}
     .button.primary{background:var(--green);color:#11130c;box-shadow:0 0 0 0 rgba(183,245,74,.58);animation:buttonPulseGreen 2s ease-in-out infinite}
@@ -117,7 +129,7 @@
     .game-search-input:focus{background:#17171c;box-shadow:inset 0 0 0 1px rgba(183,245,74,.30),0 0 25px rgba(183,245,74,.12)}
     .game-search-icon{position:absolute;right:21px;top:50%;transform:translateY(-50%);font-size:21px;pointer-events:none}
     .game-search-info{margin-top:12px;padding-left:4px;color:#b5b5bd;font-size:14px}
-    @media(max-width:780px){.promo-grid,.modal-grid{grid-template-columns:1fr}.modal-box{padding:20px}.modal-copy h3{font-size:25px}.nav-links{display:none}.units,.how,.faq,.area-grid{grid-template-columns:1fr}.section-head,.cta,.footer-row{align-items:start;flex-direction:column}.step,.step:first-child{border-left:0;border-top:1px solid var(--line)}.step:first-child{border-top:0}.hero{padding-top:66px}section{padding:58px 0}.game-search-box{max-width:100%}.game-search-input{height:56px;font-size:15px}}
+    @media(max-width:780px){.promo-grid,.modal-grid{grid-template-columns:1fr}.modal-box{padding:20px}.modal-copy h3{font-size:25px}.units,.how,.faq,.area-grid{grid-template-columns:1fr}.section-head,.cta,.footer-row{align-items:start;flex-direction:column}.step,.step:first-child{border-left:0;border-top:1px solid var(--line)}.step:first-child{border-top:0}.hero{padding-top:66px}section{padding:58px 0}.game-search-box{max-width:100%}.game-search-input{height:56px;font-size:15px}}
     @media(prefers-reduced-motion:reduce){.button,.button::after,.button.primary,.button.ghost{animation:none;transition:none}}
   </style>
 </head>
@@ -128,98 +140,36 @@
       <img class="brand-logo" src="./eboni.png" alt="Logo Eboni Space">
       <span>EBONI SPACE</span>
     </a>
-    <nav class="nav-links" aria-label="Navigasi utama">
+    <button class="menu-toggle" type="button" aria-label="Buka menu navigasi" aria-controls="main-menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="popup-menu" id="main-menu" aria-label="Navigasi utama">
       <a href="#unit">Unit</a>
       <a href="#games">Cek Game</a>
       <a href="#promo">Promo</a>
       <a href="#cara-sewa">Cara Sewa</a>
       <a href="#area">Area Layanan</a>
       <a href="#faq">FAQ</a>
+      <a class="popup-price" href="./harga-sewa-ps-eboni-space/">💸 Cek Harga PS4</a>
+      <a class="popup-wa" href="https://wa.me/6287816546467?text=Halo%20Eboni%20Space%2C%20saya%20mau%20sewa%20PS4%20atau%20PS5%20untuk%20area%20Cileungsi." target="_blank" rel="noopener">💬 Pesan via WhatsApp</a>
     </nav>
-    <a class="button primary" href="https://wa.me/6287816546467?text=Halo%20Eboni%20Space%2C%20saya%20mau%20sewa%20PS4%20atau%20PS5%20untuk%20area%20Cileungsi." target="_blank" rel="noopener">Pesan via WhatsApp</a>
   </div>
 </header>
 
 <main>
-  <section class="hero" id="home">
-    <div class="wrap">
-      <p class="eyebrow">Rental PlayStation Cileungsi &amp; Sekitar</p>
-      <h1>Sewa PS4 &amp; PS5 Cileungsi.<br><em>Antar 24 jam</em> ke rumah.</h1>
-      <p class="lead">Sewa PS4 dan PS5 untuk main di rumah di Cileungsi. Unit terawat, pilihan game lengkap, booking via WhatsApp, serta pengantaran 24 jam sesuai ketersediaan dan jangkauan.</p>
-      <div class="hero-actions">
-        <a class="button primary" href="https://wa.me/6287816546467?text=Halo%20Eboni%20Space%2C%20saya%20mau%20sewa%20PS4%20atau%20PS5%20untuk%20area%20Cileungsi." target="_blank" rel="noopener">💬 Tanya Ketersediaan</a>
-        <a class="button ghost" href="./harga-sewa-ps-eboni-space/">💸 Cek Harga PS4</a>
-        <a class="button ghost" href="./rental-playstation/">🎮 Rental PlayStation</a>
-        <a class="button ghost" href="#games">🔎 Cek Game</a>
-        <a class="button ghost" href="https://www.tiktok.com/@ebonispace" target="_blank" rel="noopener">🎵 Lihat TikTok</a>
-        <a class="button ghost" href="#unit">Lihat Pilihan Unit ↓</a>
-      </div>
-      <div class="chips"><span class="chip">PS4 • PS5</span><span class="chip">Pengantaran 24 jam</span><span class="chip">Sewa ke rumah</span><span class="chip">Area Cileungsi</span><span class="chip">Order via WhatsApp</span></div>
-    </div>
-  </section>
+  <section class="hero" id="home"><div class="wrap"><p class="eyebrow">Rental PlayStation Cileungsi &amp; Sekitar</p><h1>Sewa PS4 &amp; PS5 Cileungsi.<br><em>Antar 24 jam</em> ke rumah.</h1><p class="lead">Sewa PS4 dan PS5 untuk main di rumah di Cileungsi. Unit terawat, pilihan game lengkap, booking via WhatsApp, serta pengantaran 24 jam sesuai ketersediaan dan jangkauan.</p><div class="hero-actions"><a class="button primary" href="https://wa.me/6287816546467?text=Halo%20Eboni%20Space%2C%20saya%20mau%20sewa%20PS4%20atau%20PS5%20untuk%20area%20Cileungsi." target="_blank" rel="noopener">💬 Tanya Ketersediaan</a><a class="button ghost" href="./harga-sewa-ps-eboni-space/">💸 Cek Harga PS4</a><a class="button ghost" href="./rental-playstation/">🎮 Rental PlayStation</a><a class="button ghost" href="#games">🔎 Cek Game</a><a class="button ghost" href="https://www.tiktok.com/@ebonispace" target="_blank" rel="noopener">🎵 Lihat TikTok</a><a class="button ghost" href="#unit">Lihat Pilihan Unit ↓</a></div><div class="chips"><span class="chip">PS4 • PS5</span><span class="chip">Pengantaran 24 jam</span><span class="chip">Sewa ke rumah</span><span class="chip">Area Cileungsi</span><span class="chip">Order via WhatsApp</span></div></div></section>
 
-  <section id="unit">
-    <div class="wrap">
-      <div class="section-head"><h2>Pilihan sewa PS di Cileungsi.</h2><p>Cek unit, durasi sewa, daftar game, harga terbaru, dan jadwal pengantaran langsung melalui WhatsApp.</p></div>
-      <div class="grid units">
-        <article class="card">
-          <div class="card-icon">🕹️</div>
-          <h3>Sewa PlayStation 4</h3>
-          <p>PS4 untuk mabar, game olahraga, petualangan, dan hiburan di rumah. Tanyakan paket harian atau durasi lain yang tersedia.</p>
-          <a class="button ghost" href="https://wa.me/6287816546467?text=Halo%20Eboni%20Space%2C%20saya%20mau%20tanya%20sewa%20PS4%20untuk%20area%20Cileungsi." target="_blank" rel="noopener">Tanya PS4 Cileungsi</a>
-          <a class="button ghost" href="./harga-sewa-ps-eboni-space/">💸 Lihat Harga PS4</a>
-        </article>
-        <article class="card">
-          <div class="card-icon">⚡</div>
-          <h3>Sewa PlayStation 5</h3>
-          <p>PS5 untuk pengalaman gaming generasi baru dengan performa cepat. Konfirmasi unit dan pilihan game sebelum booking.</p>
-          <a class="button ghost" href="https://wa.me/6287816546467?text=Halo%20Eboni%20Space%2C%20saya%20mau%20tanya%20sewa%20PS5%20untuk%20area%20Cileungsi." target="_blank" rel="noopener">Tanya PS5 Cileungsi</a>
-        </article>
-      </div>
-    </div>
-  </section>
+  <section id="unit"><div class="wrap"><div class="section-head"><h2>Pilihan sewa PS di Cileungsi.</h2><p>Cek unit, durasi sewa, daftar game, harga terbaru, dan jadwal pengantaran langsung melalui WhatsApp.</p></div><div class="grid units"><article class="card"><div class="card-icon">🕹️</div><h3>Sewa PlayStation 4</h3><p>PS4 untuk mabar, game olahraga, petualangan, dan hiburan di rumah. Tanyakan paket harian atau durasi lain yang tersedia.</p><a class="button ghost" href="https://wa.me/6287816546467?text=Halo%20Eboni%20Space%2C%20saya%20mau%20tanya%20sewa%20PS4%20untuk%20area%20Cileungsi." target="_blank" rel="noopener">Tanya PS4 Cileungsi</a><a class="button ghost" href="./harga-sewa-ps-eboni-space/">💸 Lihat Harga PS4</a></article><article class="card"><div class="card-icon">⚡</div><h3>Sewa PlayStation 5</h3><p>PS5 untuk pengalaman gaming generasi baru dengan performa cepat. Konfirmasi unit dan pilihan game sebelum booking.</p><a class="button ghost" href="https://wa.me/6287816546467?text=Halo%20Eboni%20Space%2C%20saya%20mau%20tanya%20sewa%20PS5%20untuk%20area%20Cileungsi." target="_blank" rel="noopener">Tanya PS5 Cileungsi</a></article></div></div></section>
 
-  <section id="games">
-    <div class="wrap">
-      <div class="section-head"><div><p class="eyebrow">Koleksi Game</p><h2>Cari game yang ingin dimainkan.</h2><p>Cari koleksi game PS4, PS5, dan Nintendo Switch Eboni Space. Konfirmasi ketersediaan game kepada admin saat booking.</p></div></div>
-      <div class="game-search-box">
-        <div class="game-search-input-wrap"><input type="search" id="gameSearchPS4" class="game-search-input" placeholder="Cari game PS4, PS5, dan Nintendo: GTA, FIFA, Tekken..." autocomplete="off" aria-label="Cari game"><span class="game-search-icon">🔎</span></div>
-        <div class="game-search-info" id="gameSearchInfo">Ketik minimal 2 huruf untuk mencari game.</div>
-        <div class="game-results" id="gameResultsPS4" aria-live="polite"></div>
-      </div>
-    </div>
-  </section>
+  <section id="games"><div class="wrap"><div class="section-head"><div><p class="eyebrow">Koleksi Game</p><h2>Cari game yang ingin dimainkan.</h2><p>Cari koleksi game PS4, PS5, dan Nintendo Switch Eboni Space. Konfirmasi ketersediaan game kepada admin saat booking.</p></div></div><div class="game-search-box"><div class="game-search-input-wrap"><input type="search" id="gameSearchPS4" class="game-search-input" placeholder="Cari game PS4, PS5, dan Nintendo: GTA, FIFA, Tekken..." autocomplete="off" aria-label="Cari game"><span class="game-search-icon">🔎</span></div><div class="game-search-info" id="gameSearchInfo">Ketik minimal 2 huruf untuk mencari game.</div><div class="game-results" id="gameResultsPS4" aria-live="polite"></div></div></div></section>
 
-  <section id="promo">
-    <div class="wrap">
-      <div class="section-head"><h2>Promo sewa PS terbaru.</h2><p>Klik gambar atau tombol detail untuk melihat penjelasan dan ketentuan promo Eboni Space.</p></div>
-      <div class="grid promo-grid">
-        <article class="card promo-card"><img class="promo-image" src="./weekend.png" loading="lazy" decoding="async" alt="Promo Happy Weekend sewa PS4 Eboni Space" data-promo="weekend"><div class="promo-content"><h3>Happy Weekend PS4</h3><p>Sewa PS4 dari Jumat pukul 16.00 sampai Minggu pukul 23.00 dengan harga promo Rp200.000.</p><div class="promo-warning">Promo tidak dapat digabung dengan promo lainnya.</div><button class="button primary" type="button" data-promo="weekend">Lihat Detail Promo</button></div></article>
-        <article class="card promo-card"><img class="promo-image" src="./15.png" loading="lazy" decoding="async" alt="Promo diskon 15 persen sewa PS Eboni Space" data-promo="diskon"><div class="promo-content"><h3>Diskon Spesial 15%</h3><p>Potongan 15% untuk sewa PS sesuai periode promo dan ketersediaan unit. Konfirmasi ke admin saat booking.</p><div class="promo-warning">Promo tidak dapat digabung dengan promo lainnya.</div><button class="button primary" type="button" data-promo="diskon">Lihat Detail Promo</button></div></article>
-      </div>
-    </div>
-  </section>
+  <section id="promo"><div class="wrap"><div class="section-head"><h2>Promo sewa PS terbaru.</h2><p>Klik gambar atau tombol detail untuk melihat penjelasan dan ketentuan promo Eboni Space.</p></div><div class="grid promo-grid"><article class="card promo-card"><img class="promo-image" src="./weekend.png" loading="lazy" decoding="async" alt="Promo Happy Weekend sewa PS4 Eboni Space" data-promo="weekend"><div class="promo-content"><h3>Happy Weekend PS4</h3><p>Sewa PS4 dari Jumat pukul 16.00 sampai Minggu pukul 23.00 dengan harga promo Rp200.000.</p><div class="promo-warning">Promo tidak dapat digabung dengan promo lainnya.</div><button class="button primary" type="button" data-promo="weekend">Lihat Detail Promo</button></div></article><article class="card promo-card"><img class="promo-image" src="./15.png" loading="lazy" decoding="async" alt="Promo diskon 15 persen sewa PS Eboni Space" data-promo="diskon"><div class="promo-content"><h3>Diskon Spesial 15%</h3><p>Potongan 15% untuk sewa PS sesuai periode promo dan ketersediaan unit. Konfirmasi ke admin saat booking.</p><div class="promo-warning">Promo tidak dapat digabung dengan promo lainnya.</div><button class="button primary" type="button" data-promo="diskon">Lihat Detail Promo</button></div></article></div></div></section>
 
-  <section id="cara-sewa">
-    <div class="wrap">
-      <div class="section-head"><h2>Cara sewa PS di Cileungsi.</h2><p>Empat langkah sederhana untuk booking rental PlayStation ke rumah.</p></div>
-      <div class="grid how"><div class="step"><span class="step-number">01</span><h3>Chat admin</h3><p>Sebutkan PS4 atau PS5, tanggal, durasi, dan area Cileungsi.</p></div><div class="step"><span class="step-number">02</span><h3>Kirim pin lokasi</h3><p>Pin lokasi digunakan untuk mengecek jangkauan dan biaya pengantaran.</p></div><div class="step"><span class="step-number">03</span><h3>Konfirmasi pesanan</h3><p>Admin mengonfirmasi unit, harga, game, jadwal, dan ketentuan sewa.</p></div><div class="step"><span class="step-number">04</span><h3>Main!</h3><p>Unit diantar sesuai jadwal yang sudah disepakati.</p></div></div>
-    </div>
-  </section>
+  <section id="cara-sewa"><div class="wrap"><div class="section-head"><h2>Cara sewa PS di Cileungsi.</h2><p>Empat langkah sederhana untuk booking rental PlayStation ke rumah.</p></div><div class="grid how"><div class="step"><span class="step-number">01</span><h3>Chat admin</h3><p>Sebutkan PS4 atau PS5, tanggal, durasi, dan area Cileungsi.</p></div><div class="step"><span class="step-number">02</span><h3>Kirim pin lokasi</h3><p>Pin lokasi digunakan untuk mengecek jangkauan dan biaya pengantaran.</p></div><div class="step"><span class="step-number">03</span><h3>Konfirmasi pesanan</h3><p>Admin mengonfirmasi unit, harga, game, jadwal, dan ketentuan sewa.</p></div><div class="step"><span class="step-number">04</span><h3>Main!</h3><p>Unit diantar sesuai jadwal yang sudah disepakati.</p></div></div></div></section>
 
-  <section class="area" id="area">
-    <div class="wrap area-grid">
-      <div><p class="eyebrow">Jangkauan layanan</p><h2>Pengantaran PS ke Cileungsi dan area sekitar.</h2><p class="lead">Cileungsi menjadi area utama layanan Eboni Space. Untuk pengantaran, kirim pin lokasi agar admin dapat memastikan jadwal, biaya antar, dan unit yang tersedia.</p><div class="area-list"><a href="./index.html" aria-label="Sewa PS4 dan PS5 Cileungsi">Cileungsi</a><a href="./jonggol/" aria-label="Sewa PS4 dan PS5 Jonggol">Jonggol</a><a href="./mekarsari/" aria-label="Sewa PS4 dan PS5 Mekarsari">Mekarsari</a><a href="./gunung%20putri/" aria-label="Sewa PS4 dan PS5 Gunung Putri">Gunung Putri</a><a href="./cikeas/" aria-label="Sewa PS4 dan PS5 Cikeas">Cikeas</a><a href="./cibubur/" aria-label="Sewa PS4 dan PS5 Cibubur">Cibubur</a><a href="./setu/" aria-label="Sewa PS4 dan PS5 Setu">Setu</a></div></div>
-      <aside class="notice"><strong>Butuh sewa mendadak?</strong><br>Pengantaran tersedia 24 jam sesuai ketersediaan. Chat admin untuk cek unit dan jadwal pengantaran.</aside>
-    </div>
-  </section>
+  <section class="area" id="area"><div class="wrap area-grid"><div><p class="eyebrow">Jangkauan layanan</p><h2>Pengantaran PS ke Cileungsi dan area sekitar.</h2><p class="lead">Cileungsi menjadi area utama layanan Eboni Space. Untuk pengantaran, kirim pin lokasi agar admin dapat memastikan jadwal, biaya antar, dan unit yang tersedia.</p><div class="area-list"><a href="./index.html" aria-label="Sewa PS4 dan PS5 Cileungsi">Cileungsi</a><a href="./jonggol/" aria-label="Sewa PS4 dan PS5 Jonggol">Jonggol</a><a href="./mekarsari/" aria-label="Sewa PS4 dan PS5 Mekarsari">Mekarsari</a><a href="./gunung%20putri/" aria-label="Sewa PS4 dan PS5 Gunung Putri">Gunung Putri</a><a href="./cikeas/" aria-label="Sewa PS4 dan PS5 Cikeas">Cikeas</a><a href="./cibubur/" aria-label="Sewa PS4 dan PS5 Cibubur">Cibubur</a><a href="./setu/" aria-label="Sewa PS4 dan PS5 Setu">Setu</a></div></div><aside class="notice"><strong>Butuh sewa mendadak?</strong><br>Pengantaran tersedia 24 jam sesuai ketersediaan. Chat admin untuk cek unit dan jadwal pengantaran.</aside></div></section>
 
-  <section id="faq">
-    <div class="wrap">
-      <div class="section-head"><h2>FAQ sewa PS Cileungsi.</h2><p>Jawaban singkat untuk pertanyaan yang umum sebelum booking.</p></div>
-      <div class="grid faq"><details><summary>Apakah Eboni Space melayani sewa PS di Cileungsi?</summary><p>Ya, Cileungsi termasuk area yang ditargetkan untuk layanan Eboni Space. Konfirmasi pin lokasi melalui WhatsApp karena jangkauan dan jadwal pengantaran dapat berubah.</p></details><details><summary>Apakah PS4 dan PS5 bisa diantar ke Cileungsi?</summary><p>Bisa sesuai jangkauan, jadwal, dan ketersediaan unit. Kirim pin lokasi di Cileungsi kepada admin untuk konfirmasi pengantaran.</p></details><details><summary>Apakah bisa sewa harian atau beberapa jam?</summary><p>Durasi sewa dapat disesuaikan dengan paket yang tersedia. Tanyakan pilihan durasi dan harga terbaru kepada admin saat booking.</p></details><details><summary>Apakah bisa request game?</summary><p>Bisa. Sampaikan game yang ingin dimainkan sebelum booking dikonfirmasi agar admin dapat mengecek ketersediaannya.</p></details></div>
-    </div>
-  </section>
+  <section id="faq"><div class="wrap"><div class="section-head"><h2>FAQ sewa PS Cileungsi.</h2><p>Jawaban singkat untuk pertanyaan yang umum sebelum booking.</p></div><div class="grid faq"><details><summary>Apakah Eboni Space melayani sewa PS di Cileungsi?</summary><p>Ya, Cileungsi termasuk area yang ditargetkan untuk layanan Eboni Space. Konfirmasi pin lokasi melalui WhatsApp karena jangkauan dan jadwal pengantaran dapat berubah.</p></details><details><summary>Apakah PS4 dan PS5 bisa diantar ke Cileungsi?</summary><p>Bisa sesuai jangkauan, jadwal, dan ketersediaan unit. Kirim pin lokasi di Cileungsi kepada admin untuk konfirmasi pengantaran.</p></details><details><summary>Apakah bisa sewa harian atau beberapa jam?</summary><p>Durasi sewa dapat disesuaikan dengan paket yang tersedia. Tanyakan pilihan durasi dan harga terbaru kepada admin saat booking.</p></details><details><summary>Apakah bisa request game?</summary><p>Bisa. Sampaikan game yang ingin dimainkan sebelum booking dikonfirmasi agar admin dapat mengecek ketersediaannya.</p></details></div></div></section>
 
   <section><div class="wrap"><div class="cta"><div><p class="eyebrow" style="color:#263116">Ready to play?</p><h2>Booking sewa PS4 atau PS5 Cileungsi sekarang.</h2></div><a class="button" href="https://wa.me/6287816546467?text=Halo%20Eboni%20Space%2C%20saya%20mau%20sewa%20PS4%20atau%20PS5%20untuk%20area%20Cileungsi." target="_blank" rel="noopener">Chat WhatsApp →</a></div></div></section>
 </main>
@@ -237,6 +187,16 @@
   document.querySelectorAll('[data-promo]').forEach(el=>el.addEventListener('click',()=>{const modal=document.getElementById(promoMap[el.dataset.promo]);if(modal){modal.classList.add('open');modal.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';}}));
   document.querySelectorAll('.modal').forEach(modal=>{modal.querySelector('.modal-close').addEventListener('click',()=>{modal.classList.remove('open');modal.setAttribute('aria-hidden','true');document.body.style.overflow='';});modal.addEventListener('click',e=>{if(e.target===modal){modal.classList.remove('open');modal.setAttribute('aria-hidden','true');document.body.style.overflow='';}});});
   document.addEventListener('keydown',e=>{if(e.key==='Escape')document.querySelectorAll('.modal.open').forEach(modal=>{modal.classList.remove('open');modal.setAttribute('aria-hidden','true');document.body.style.overflow='';});});
+
+  const menuToggle=document.querySelector('.menu-toggle');
+  const popupMenu=document.querySelector('.popup-menu');
+  if(menuToggle&&popupMenu){
+    function closeMenu(){popupMenu.classList.remove('open');menuToggle.classList.remove('open');menuToggle.setAttribute('aria-expanded','false');menuToggle.setAttribute('aria-label','Buka menu navigasi');}
+    menuToggle.addEventListener('click',()=>{const isOpen=popupMenu.classList.toggle('open');menuToggle.classList.toggle('open',isOpen);menuToggle.setAttribute('aria-expanded',String(isOpen));menuToggle.setAttribute('aria-label',isOpen?'Tutup menu navigasi':'Buka menu navigasi');});
+    popupMenu.querySelectorAll('a').forEach(link=>link.addEventListener('click',closeMenu));
+    document.addEventListener('click',event=>{if(!event.target.closest('.nav'))closeMenu();});
+    document.addEventListener('keydown',event=>{if(event.key==='Escape')closeMenu();});
+  }
 </script>
 <script>
   document.addEventListener('DOMContentLoaded',()=>{
