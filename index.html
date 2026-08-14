@@ -209,5 +209,75 @@
     searchInput.addEventListener('input',function(){const keywordAsli=this.value.trim();const keyword=normalizeText(keywordAsli);resultsBox.innerHTML='';if(keyword.length<2){infoBox.textContent=`${games.length.toLocaleString('id-ID')} game PS4, PS5, dan Nintendo tersedia. Ketik minimal 2 huruf.`;return;}const hasil=games.filter(game=>{const nama=typeof game==='string'?game:game.nama;return normalizeText(nama).includes(keyword);});if(hasil.length===0){infoBox.textContent=`Tidak ditemukan game untuk "${keywordAsli}".`;resultsBox.innerHTML='<div class="game-empty">Game tidak ditemukan.</div>';return;}infoBox.textContent=`${hasil.length.toLocaleString('id-ID')} game ditemukan.`;hasil.slice(0,30).forEach(game=>{const nama=typeof game==='string'?game:game.nama;const platform=typeof game==='string'?'PS4':(game.platform||'PS4');const item=document.createElement('div');item.className='game-item';const nameElement=document.createElement('span');nameElement.className='game-name';nameElement.textContent=nama;const platformElement=document.createElement('span');platformElement.className='game-platform';platformElement.textContent=platform;item.appendChild(nameElement);item.appendChild(platformElement);resultsBox.appendChild(item);});if(hasil.length>30){const more=document.createElement('div');more.className='game-empty';more.textContent=`Ada ${hasil.length.toLocaleString('id-ID')} hasil. Ketik nama lebih spesifik.`;resultsBox.appendChild(more);}});
   });
 </script>
+  <script>
+(() => {
+  const TRACK_URL = 'https://sewapscileungsi-monitor.ebonispace.workers.dev/track';
+  const SESSION_KEY = 'sewapscileungsi_session_id';
+
+  let sessionId = sessionStorage.getItem(SESSION_KEY);
+
+  if (!sessionId) {
+    sessionId = crypto.randomUUID();
+    sessionStorage.setItem(SESSION_KEY, sessionId);
+  }
+
+  function send(event, data = {}) {
+    const payload = JSON.stringify({
+      event,
+      sessionId,
+      path: location.pathname,
+      title: document.title,
+      referrer: document.referrer ? new URL(document.referrer).hostname : '',
+      device: innerWidth <= 720 ? 'mobile' : 'desktop',
+      ...data
+    });
+
+    const blob = new Blob([payload], {
+      type: 'application/json'
+    });
+
+    if (!navigator.sendBeacon(TRACK_URL, blob)) {
+      fetch(TRACK_URL, {
+        method: 'POST',
+        mode: 'cors',
+        keepalive: true,
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: payload
+      }).catch(() => {});
+    }
+  }
+
+  send('page_view');
+
+  setInterval(() => {
+    send('heartbeat');
+  }, 60000);
+
+  document.addEventListener('click', event => {
+    const link = event.target.closest('a');
+    const button = event.target.closest('button');
+
+    if (!link && !button) return;
+
+    const element = link || button;
+
+    const label = (
+      element.dataset.track ||
+      element.getAttribute('aria-label') ||
+      element.textContent ||
+      element.href ||
+      'Elemen tanpa label'
+    ).replace(/\s+/g, ' ').trim().slice(0, 120);
+
+    send('click', {
+      label,
+      target: link?.href || '',
+      element: element.tagName.toLowerCase()
+    });
+  }, { passive: true });
+})();
+</script>
 </body>
 </html>
