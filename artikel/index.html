@@ -184,14 +184,24 @@
       gap:16px;
     }
 
-    .article-card{
-      display:flex;
-      flex-direction:column;
-      padding:25px;
-      background:linear-gradient(145deg,#1a1a20,#121216);
-      border:1px solid var(--line);
-      border-radius:var(--radius);
-    }
+ .article-card{
+  display:flex;
+  flex-direction:column;
+  overflow:hidden;
+  padding:25px;
+  background:linear-gradient(145deg,#1a1a20,#121216);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+}
+
+.article-thumbnail{
+  width:calc(100% + 50px);
+  height:auto;
+  display:block;
+  margin:-25px -25px 20px;
+  object-fit:contain;
+  border-bottom:1px solid var(--line);
+}
 
     .article-icon{
       width:52px;
@@ -336,8 +346,18 @@
         </div>
 
         <div class="articles">
-          <article class="article-card">
-            <div class="article-icon">🤖</div>
+        <article class="article-card">
+  <img
+    class="article-thumbnail"
+    src="../images/artikel/booking-whatsapp-bot-eboni-space.jpg"
+    alt="Booking sewa PS melalui WhatsApp bot Eboni Space"
+    width="1200"
+    height="630"
+    loading="lazy"
+    decoding="async"
+  >
+
+  <div class="article-icon">🤖</div>
             <div class="article-category">Cara Booking</div>
 
             <h2>Cara Booking Sewa PS di Cileungsi Lewat WhatsApp Bot</h2>
