@@ -130,6 +130,69 @@
     .game-search-input:focus{background:#17171c;box-shadow:inset 0 0 0 1px rgba(183,245,74,.30),0 0 25px rgba(183,245,74,.12)}
     .game-search-icon{position:absolute;right:21px;top:50%;transform:translateY(-50%);font-size:21px;pointer-events:none}
     .game-search-info{margin-top:12px;padding-left:4px;color:#b5b5bd;font-size:14px}
+    .bot-booking{
+  padding:28px;
+  background:linear-gradient(135deg,rgba(183,245,74,.14),rgba(21,21,25,.95));
+  border:1px solid #4b6330;
+  border-radius:var(--radius);
+}
+
+.bot-booking-grid{
+  display:grid;
+  grid-template-columns:1.1fr .9fr;
+  gap:28px;
+  align-items:center;
+}
+
+.bot-booking h2{
+  margin-bottom:12px;
+}
+
+.bot-booking p{
+  margin-bottom:0;
+  color:var(--muted);
+}
+
+.bot-booking .button{
+  margin-top:20px;
+}
+
+.bot-flow{
+  display:grid;
+  gap:10px;
+}
+
+.bot-flow-item{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:13px 15px;
+  background:#151519;
+  border:1px solid #3b4930;
+  border-radius:14px;
+  color:#e7f6d0;
+  font-size:14px;
+  font-weight:650;
+}
+
+.bot-flow-number{
+  display:grid;
+  place-items:center;
+  width:28px;
+  height:28px;
+  flex:0 0 28px;
+  border-radius:50%;
+  background:var(--green);
+  color:#10130c;
+  font-size:13px;
+  font-weight:850;
+}
+
+@media(max-width:780px){
+  .bot-booking-grid{
+    grid-template-columns:1fr;
+  }
+}
     @media(max-width:780px){.promo-grid,.modal-grid{grid-template-columns:1fr}.modal-box{padding:20px}.modal-copy h3{font-size:25px}.units,.how,.faq,.area-grid{grid-template-columns:1fr}.section-head,.cta,.footer-row{align-items:start;flex-direction:column}.step,.step:first-child{border-left:0;border-top:1px solid var(--line)}.step:first-child{border-top:0}.hero{padding-top:66px}section{padding:58px 0}.game-search-box{max-width:100%}.game-search-input{height:56px;font-size:15px}}
     @media(prefers-reduced-motion:reduce){.button,.button::after,.button.primary,.button.ghost{animation:none;transition:none}}
   </style>
@@ -159,6 +222,53 @@
 
 <main>
   <section class="hero" id="home"><div class="wrap"><p class="eyebrow">Rental PlayStation Cileungsi &amp; Sekitar</p><h1>Sewa PS4 &amp; PS5 Cileungsi.<br><em>Antar 24 jam</em> ke rumah.</h1><p class="lead">Sewa PS4 dan PS5 untuk main di rumah di Cileungsi. Unit terawat, pilihan game lengkap, booking via WhatsApp, serta pengantaran 24 jam sesuai ketersediaan dan jangkauan.</p><div class="hero-actions"><a class="button primary" href="https://wa.me/6287816546467?text=Halo%20Eboni%20Space%2C%20saya%20mau%20sewa%20PS4%20atau%20PS5%20untuk%20area%20Cileungsi." target="_blank" rel="noopener">💬 Tanya Ketersediaan</a><a class="button ghost" href="./harga-sewa-ps-eboni-space/">💸 Cek Harga PS4</a><a class="button ghost" href="./rental-playstation/">🎮 Rental PlayStation</a><a class="button ghost" href="#games">🔎 Cek Game</a><a class="button ghost" href="https://www.tiktok.com/@ebonispace" target="_blank" rel="noopener">🎵 Lihat TikTok</a><a class="button ghost" href="#unit">Lihat Pilihan Unit ↓</a></div><div class="chips"><span class="chip">PS4 • PS5</span><span class="chip">Pengantaran 24 jam</span><span class="chip">Sewa ke rumah</span><span class="chip">Area Cileungsi</span><span class="chip">Order via WhatsApp</span></div></div></section>
+  <section id="booking-bot">
+  <div class="wrap">
+    <div class="bot-booking">
+      <div class="bot-booking-grid">
+        <div>
+          <p class="eyebrow">Booking otomatis</p>
+          <h2>Booking sewa PS tanpa menunggu balasan admin.</h2>
+
+          <p>
+            Sekarang Anda bisa membuat booking sewa PS langsung melalui WhatsApp bot Eboni Space.
+            Pilih konsol, paket durasi sewa, dan tambahan TV bila diperlukan. Setelah booking berhasil,
+            Anda akan mendapat kode booking otomatis dan admin akan menghubungi Anda.
+          </p>
+
+          <a class="button primary"
+             href="https://wa.me/6287816546467?text=MENU"
+             target="_blank"
+             rel="noopener">
+            🤖 Booking Otomatis Sekarang
+          </a>
+        </div>
+
+        <div class="bot-flow" aria-label="Alur booking otomatis">
+          <div class="bot-flow-item">
+            <span class="bot-flow-number">1</span>
+            <span>Klik tombol booking atau kirim pesan <strong>MENU</strong>.</span>
+          </div>
+
+          <div class="bot-flow-item">
+            <span class="bot-flow-number">2</span>
+            <span>Pilih unit konsol: PS4 atau PS5.</span>
+          </div>
+
+          <div class="bot-flow-item">
+            <span class="bot-flow-number">3</span>
+            <span>Pilih paket jam sewa dan tambahan TV bila diperlukan.</span>
+          </div>
+
+          <div class="bot-flow-item">
+            <span class="bot-flow-number">4</span>
+            <span>Terima kode booking. Tunggu beberapa saat, admin akan menghubungi Anda.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
   <section id="unit"><div class="wrap"><div class="section-head"><h2>Pilihan sewa PS di Cileungsi.</h2><p>Cek unit, durasi sewa, daftar game, harga terbaru, dan jadwal pengantaran langsung melalui WhatsApp.</p></div><div class="grid units"><article class="card"><div class="card-icon">🕹️</div><h3>Sewa PlayStation 4</h3><p>PS4 untuk mabar, game olahraga, petualangan, dan hiburan di rumah. Tanyakan paket harian atau durasi lain yang tersedia.</p><a class="button ghost" href="https://wa.me/6287816546467?text=Halo%20Eboni%20Space%2C%20saya%20mau%20tanya%20sewa%20PS4%20untuk%20area%20Cileungsi." target="_blank" rel="noopener">Tanya PS4 Cileungsi</a><a class="button ghost" href="./harga-sewa-ps-eboni-space/">💸 Lihat Harga PS4</a></article><article class="card"><div class="card-icon">⚡</div><h3>Sewa PlayStation 5</h3><p>PS5 untuk pengalaman gaming generasi baru dengan performa cepat. Konfirmasi unit dan pilihan game sebelum booking.</p><a class="button ghost" href="https://wa.me/6287816546467?text=Halo%20Eboni%20Space%2C%20saya%20mau%20tanya%20sewa%20PS5%20untuk%20area%20Cileungsi." target="_blank" rel="noopener">Tanya PS5 Cileungsi</a></article></div></div></section>
 
