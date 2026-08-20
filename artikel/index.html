@@ -5,10 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>Artikel & Tips Sewa PS Cileungsi | Eboni Space</title>
-
-  <meta name="description"
-        content="Artikel dan tips sewa PS di Cileungsi dari Eboni Space. Panduan booking WhatsApp bot, harga sewa, pilihan PS4 dan PS5, game, serta pengantaran.">
-
+  <meta name="description" content="Artikel dan tips sewa PS di Cileungsi dari Eboni Space. Panduan booking WhatsApp bot, harga sewa, pilihan PS4 dan PS5, game, serta pengantaran.">
   <meta name="robots" content="index,follow,max-image-preview:large">
   <meta name="theme-color" content="#09090b">
   <link rel="canonical" href="https://sewapscileungsi.com/artikel/">
@@ -22,6 +19,21 @@
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://sewapscileungsi.com/eboni.png">
   <meta property="og:locale" content="id_ID">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Artikel & Tips Sewa PS Cileungsi",
+    "url": "https://sewapscileungsi.com/artikel/",
+    "description": "Artikel dan panduan booking sewa PS4 dan PS5 di Cileungsi dari Eboni Space.",
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "Eboni Space",
+      "url": "https://sewapscileungsi.com/"
+    }
+  }
+  </script>
 
   <style>
     :root{
@@ -111,17 +123,6 @@
       background:#c9ff6b;
     }
 
-    .button.ghost{
-      border-color:#45454f;
-      color:var(--text);
-    }
-
-    .button.ghost:hover{
-      transform:translateY(-2px);
-      border-color:var(--green);
-      color:var(--green);
-    }
-
     .hero{
       padding:82px 0 55px;
       background:
@@ -178,30 +179,31 @@
       color:var(--muted);
     }
 
-    .articles{
+    .articles,
+    .content-grid{
       display:grid;
       grid-template-columns:repeat(3,1fr);
       gap:16px;
     }
 
- .article-card{
-  display:flex;
-  flex-direction:column;
-  overflow:hidden;
-  padding:25px;
-  background:linear-gradient(145deg,#1a1a20,#121216);
-  border:1px solid var(--line);
-  border-radius:var(--radius);
-}
+    .article-card{
+      display:flex;
+      flex-direction:column;
+      overflow:hidden;
+      padding:25px;
+      background:linear-gradient(145deg,#1a1a20,#121216);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+    }
 
-.article-thumbnail{
-  width:calc(100% + 50px);
-  height:auto;
-  display:block;
-  margin:-25px -25px 20px;
-  object-fit:contain;
-  border-bottom:1px solid var(--line);
-}
+    .article-thumbnail{
+      width:calc(100% + 50px);
+      height:auto;
+      display:block;
+      margin:-25px -25px 20px;
+      object-fit:contain;
+      border-bottom:1px solid var(--line);
+    }
 
     .article-icon{
       width:52px;
@@ -234,21 +236,47 @@
       color:var(--muted);
     }
 
-    .article-card.coming{
-      opacity:.72;
+    .content-card{
+      padding:26px;
+      background:linear-gradient(145deg,#1a1a20,#121216);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
     }
 
-    .coming-label{
-      display:inline-flex;
-      width:max-content;
-      margin-top:auto;
-      padding:8px 11px;
-      border:1px solid #3b4930;
-      border-radius:999px;
-      color:#d8e9bb;
-      background:rgba(183,245,74,.06);
-      font-size:13px;
-      font-weight:700;
+    .content-card h3{
+      margin-bottom:12px;
+      font-size:21px;
+      line-height:1.25;
+    }
+
+    .content-card p{
+      margin-bottom:16px;
+      color:var(--muted);
+    }
+
+    .content-card p:last-child{margin-bottom:0}
+
+    .faq-list{
+      display:grid;
+      gap:12px;
+    }
+
+    .faq-list details{
+      padding:20px 22px;
+      background:linear-gradient(145deg,#1a1a20,#121216);
+      border:1px solid var(--line);
+      border-radius:16px;
+    }
+
+    .faq-list summary{
+      cursor:pointer;
+      color:var(--text);
+      font-weight:800;
+    }
+
+    .faq-list details p{
+      margin:14px 0 0;
+      color:var(--muted);
     }
 
     .cta{
@@ -262,9 +290,7 @@
       border-radius:28px;
     }
 
-    .cta h2{
-      max-width:600px;
-    }
+    .cta h2{max-width:600px}
 
     .cta .button{
       flex-shrink:0;
@@ -292,8 +318,12 @@
     }
 
     @media(max-width:820px){
-      .articles{grid-template-columns:1fr}
-      .section-head,.cta,.footer-row{
+      .articles,
+      .content-grid{grid-template-columns:1fr}
+
+      .section-head,
+      .cta,
+      .footer-row{
         align-items:start;
         flex-direction:column;
       }
@@ -325,83 +355,105 @@
         <p class="eyebrow">Eboni Space Blog</p>
         <h1>Artikel &amp; tips sewa PS di Cileungsi.</h1>
         <p class="lead">
-          Panduan booking WhatsApp bot, pilihan PS4 dan PS5, harga sewa,
-          game untuk mabar, serta informasi pengantaran Eboni Space.
+          Temukan panduan booking WhatsApp bot, pilihan PS4 dan PS5, tips game mabar,
+          informasi pengantaran, serta persiapan sewa PlayStation untuk acara Anda.
         </p>
 
-        <a class="button primary"
-           href="https://wa.me/6287777250178?text=MENU"
-           target="_blank"
-           rel="noopener">
+        <a class="button primary" href="https://wa.me/6287777250178?text=MENU" target="_blank" rel="noopener">
           🤖 Booking Otomatis
         </a>
       </div>
     </section>
 
-    <section>
+    <section aria-labelledby="artikel-terbaru">
       <div class="wrap">
         <div class="section-head">
-          <h2>Artikel terbaru.</h2>
-          <p>Mulai dari panduan booking, lalu artikel baru akan ditambahkan secara bertahap.</p>
+          <h2 id="artikel-terbaru">Artikel terbaru.</h2>
+          <p>Panduan booking dan informasi sewa PS Eboni Space di Cileungsi dan sekitarnya.</p>
         </div>
 
         <div class="articles">
-        <article class="article-card">
-  <img
-    class="article-thumbnail"
-    src="../images/artikel/booking-whatsapp-bot-eboni-space.jpg"
-    alt="Booking sewa PS melalui WhatsApp bot Eboni Space"
-    width="1200"
-    height="630"
-    loading="lazy"
-    decoding="async"
-  >
-
-  <div class="article-icon">🤖</div>
+          <article class="article-card">
+            <img class="article-thumbnail" src="../images/artikel/booking-whatsapp-bot-eboni-space.jpg" alt="Booking sewa PS melalui WhatsApp bot Eboni Space" width="1200" height="630" loading="lazy" decoding="async">
+            <div class="article-icon" aria-hidden="true">🤖</div>
             <div class="article-category">Cara Booking</div>
-
             <h2>Cara Booking Sewa PS di Cileungsi Lewat WhatsApp Bot</h2>
-
-            <p>
-              Panduan memilih PS4 atau PS5, paket jam sewa, tambahan TV,
-              hingga mendapatkan kode booking otomatis dari Eboni Space.
-            </p>
-
-            <a class="button primary"
-               href="./cara-booking-sewa-ps-cileungsi-whatsapp/">
-              Baca Artikel →
-            </a>
+            <p>Panduan memilih PS4 atau PS5, paket jam sewa, tambahan TV, hingga mendapatkan kode booking otomatis dari Eboni Space.</p>
+            <a class="button primary" href="./cara-booking-sewa-ps-cileungsi-whatsapp/">Baca Artikel →</a>
           </article>
 
-        <article class="article-card">
-  <img
-    class="article-thumbnail"
-    src="../images/artikel/sewa-ps-antar-cileungsi.jpg"
-    alt="Sewa PS4 dan PS5 antar ke rumah di Cileungsi"
-    width="1200"
-    height="630"
-    loading="lazy"
-    decoding="async"
-  >
+          <article class="article-card">
+            <img class="article-thumbnail" src="../images/artikel/sewa-ps-antar-cileungsi.jpg" alt="Sewa PS4 dan PS5 antar ke rumah di Cileungsi" width="1200" height="630" loading="lazy" decoding="async">
+            <div class="article-icon" aria-hidden="true">🚚</div>
+            <div class="article-category">Pengantaran</div>
+            <h2>Sewa PS Antar ke Rumah di Cileungsi</h2>
+            <p>Informasi area layanan, cara booking, pengiriman pin lokasi, serta ketentuan pengantaran PS4 dan PS5 Eboni Space.</p>
+            <a class="button primary" href="./sewa-ps-antar-cileungsi-sekitar/">Baca Artikel →</a>
+          </article>
+        </div>
+      </div>
+    </section>
 
-  <div class="article-icon">🚚</div>
-  <div class="article-category">Pengantaran</div>
+    <section aria-labelledby="panduan-sewa-ps">
+      <div class="wrap">
+        <div class="section-head">
+          <h2 id="panduan-sewa-ps">Panduan sewa PS di Cileungsi</h2>
+          <p>Informasi praktis sebelum memilih paket PS4 atau PS5 dari Eboni Space.</p>
+        </div>
 
-  <h2>Sewa PS Antar ke Rumah di Cileungsi</h2>
+        <div class="content-grid">
+          <article class="content-card">
+            <h3>Pilih paket sesuai kebutuhan acara</h3>
+            <p>Sewa PlayStation cocok untuk mabar bersama teman, hiburan keluarga, acara ulang tahun, kumpul komunitas, hingga kegiatan santai di rumah. Sebelum booking, tentukan tanggal, durasi sewa, jumlah pemain, serta lokasi pengantaran. Informasi tersebut membantu Eboni Space menyiapkan unit PS, stik, dan kebutuhan tambahan yang sesuai.</p>
+            <p>Untuk bermain bersama beberapa orang, pastikan jumlah stik sesuai kebutuhan. Game sepak bola, balap, fighting, dan game party biasanya cocok untuk dimainkan bergantian maupun bersama-sama. Jika acara berlangsung lebih lama, pilih durasi sewa yang sesuai agar waktu bermain tidak terburu-buru.</p>
+          </article>
 
-  <p>
-    Informasi area layanan, cara booking, pengiriman pin lokasi,
-    serta ketentuan pengantaran PS4 dan PS5 Eboni Space.
-  </p>
+          <article class="content-card">
+            <h3>PS4 atau PS5: mana yang tepat?</h3>
+            <p>PS4 adalah pilihan yang praktis untuk banyak game populer dan sesi mabar santai. PS5 cocok bagi Anda yang ingin pengalaman visual lebih modern, performa cepat, dan pilihan game generasi terbaru. Ketersediaan unit dapat berubah, jadi sebaiknya konfirmasi pilihan konsol sebelum melakukan pemesanan.</p>
+            <p>Jika Anda belum yakin memilih PS4 atau PS5, kirimkan kebutuhan acara melalui WhatsApp bot. Sertakan tanggal sewa, alamat atau pin lokasi, perkiraan jam pengantaran, jumlah pemain, dan kebutuhan tambahan agar rekomendasi paket dapat diberikan dengan lebih tepat.</p>
+          </article>
 
-  <a class="button primary" href="./sewa-ps-antar-cileungsi-sekitar/">
-    Baca Artikel →
-  </a>
-</article>
+          <article class="content-card">
+            <h3>Cara booking dan pengantaran</h3>
+            <p>Booking sewa PS di Cileungsi dapat dilakukan melalui WhatsApp bot Eboni Space. Mulai chat dengan memilih menu booking, lalu isi informasi paket, tanggal, durasi, dan lokasi. Setelah data dicek, Anda akan menerima informasi lanjutan untuk konfirmasi pesanan.</p>
+            <p>Untuk layanan antar ke rumah, kirim pin lokasi yang akurat dan pastikan ada penerima saat unit tiba. Siapkan televisi atau monitor yang memiliki port HDMI serta area bermain yang aman dan nyaman. Baca artikel di atas untuk panduan booking dan ketentuan pengantaran yang lebih lengkap.</p>
+          </article>
+        </div>
+      </div>
+    </section>
 
+    <section aria-labelledby="faq-sewa-ps">
+      <div class="wrap">
+        <div class="section-head">
+          <h2 id="faq-sewa-ps">Pertanyaan umum sewa PS</h2>
+          <p>Jawaban singkat sebelum Anda melakukan booking.</p>
+        </div>
 
-//////////////////////////////////////////////////////////////// DI ATAS INI ARTIKEL BARU ///////////////////////////
-          
+        <div class="faq-list">
+          <details>
+            <summary>Bagaimana cara booking sewa PS di Cileungsi?</summary>
+            <p>Hubungi WhatsApp bot Eboni Space, pilih menu booking, lalu kirim tanggal sewa, durasi, pilihan PS4 atau PS5, dan lokasi pengantaran.</p>
+          </details>
+
+          <details>
+            <summary>Apakah bisa sewa PS untuk ulang tahun atau gathering?</summary>
+            <p>Bisa. Sampaikan jumlah peserta, lokasi, jadwal acara, serta jumlah unit atau stik yang dibutuhkan agar paket dapat disesuaikan.</p>
+          </details>
+
+          <details>
+            <summary>Apakah tersedia layanan antar ke rumah?</summary>
+            <p>Ketersediaan pengantaran mengikuti area layanan dan jadwal unit. Kirimkan pin lokasi melalui WhatsApp untuk pengecekan lebih lanjut.</p>
+          </details>
+
+          <details>
+            <summary>Apa yang perlu disiapkan sebelum PS diantar?</summary>
+            <p>Siapkan televisi atau monitor dengan port HDMI, stop kontak yang aman, ruang bermain yang cukup, dan pastikan penerima tersedia saat pengantaran.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
     <section>
       <div class="wrap">
         <div class="cta">
@@ -410,10 +462,7 @@
             <h2>Booking PS4 atau PS5 sekarang lewat WhatsApp bot.</h2>
           </div>
 
-          <a class="button"
-             href="https://wa.me/6287777250178?text=MENU"
-             target="_blank"
-             rel="noopener">
+          <a class="button" href="https://wa.me/6287777250178?text=MENU" target="_blank" rel="noopener">
             🤖 Mulai Booking →
           </a>
         </div>
