@@ -317,55 +317,55 @@
   const SESSION_KEY = 'sewapscileungsi_session_id';
 
   function getSessionId() {
-    let sessionId = localStorage.getItem(SESSION_KEY);
+    let id = localStorage.getItem(SESSION_KEY);
 
-    if (!sessionId) {
-      sessionId = crypto.randomUUID();
-      localStorage.setItem(SESSION_KEY, sessionId);
+    if (!id) {
+      id = crypto.randomUUID
+        ? crypto.randomUUID()
+        : `eboni-${Date.now()}-${Math.random().toString(16).slice(2)}`;
+
+      localStorage.setItem(SESSION_KEY, id);
     }
 
-    return sessionId;
+    return id;
+  }
+
+  function getPath() {
+    const path = window.location.pathname || '/';
+    return path === '/index.html' ? '/' : path;
   }
 
   const sessionId = getSessionId();
 
-  function normalizePath() {
-    const path = window.location.pathname || '/';
-
-    return path === '/index.html' ? '/' : path;
-  }
-
   function send(eventName, extra = {}) {
-    const data = {
+    const payload = {
       session_id: sessionId,
       event_name: eventName,
-      path: normalizePath(),
+      path: getPath(),
       title: document.title,
       label: extra.label || null,
       target: extra.target || null,
       referrer: document.referrer || null,
-      screen_size: `${window.screen.width}x${window.screen.height}`
+      screen_size: `${screen.width}x${screen.height}`
     };
 
-    const body = JSON.stringify(data);
+    const body = JSON.stringify(payload);
 
-    const beaconQueued = navigator.sendBeacon(
-      TRACK_URL,
-      new Blob([body], { type: 'application/json' })
-    );
-
-    if (!beaconQueued) {
-      fetch(TRACK_URL, {
-        method: 'POST',
-        mode: 'cors',
-        credentials: 'omit',
-        keepalive: true,
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body
-      }).catch(() => {});
-    }
+    fetch(TRACK_URL, {
+      method: 'POST',
+      mode: 'cors',
+      credentials: 'omit',
+      keepalive: true,
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body
+    }).catch(() => {
+      navigator.sendBeacon(
+        TRACK_URL,
+        new Blob([body], { type: 'text/plain;charset=UTF-8' })
+      );
+    });
   }
 
   send('page_view');
@@ -395,6 +395,7 @@
     send('click', { label, target });
   }, { passive: true });
 })();
+</script>
 </script>
 </body>
 </html>
