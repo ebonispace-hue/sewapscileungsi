@@ -324,28 +324,32 @@
 </script>
 <script>
 (() => {
-  const TRACK_URL =
-    'https://sewapscileungsi-monitor.ebonispace.workers.dev/track';
-
+  const TRACK_URL = 'https://traficeboni.ebonispace.workers.dev/track';
   const SESSION_KEY = 'sewapscileungsi_session_id';
 
-  let sessionId = sessionStorage.getItem(SESSION_KEY);
+  function getSessionId() {
+    let sessionId = localStorage.getItem(SESSION_KEY);
 
-  if (!sessionId) {
-    sessionId = crypto.randomUUID();
-    sessionStorage.setItem(SESSION_KEY, sessionId);
+    if (!sessionId) {
+      sessionId = crypto.randomUUID();
+      localStorage.setItem(SESSION_KEY, sessionId);
+    }
+
+    return sessionId;
   }
+
+  const sessionId = getSessionId();
 
   function send(eventName, extra = {}) {
     const payload = JSON.stringify({
       session_id: sessionId,
       event_name: eventName,
-      path: location.pathname,
+      path: window.location.pathname || '/',
       title: document.title,
       label: extra.label || null,
       target: extra.target || null,
-      device: innerWidth <= 720 ? 'mobile' : 'desktop',
-      referrer: document.referrer || null
+      referrer: document.referrer || null,
+      screen_size: `${window.screen.width}x${window.screen.height}`
     });
 
     fetch(TRACK_URL, {
@@ -357,16 +361,10 @@
         'Content-Type': 'application/json'
       },
       body: payload
-    }).catch((error) => {
-      console.error('Tracker gagal:', error);
-    });
+    }).catch(() => {});
   }
 
   send('page_view');
-
-  setInterval(() => {
-    send('heartbeat');
-  }, 60000);
 
   document.addEventListener('click', (event) => {
     const element = event.target.closest('a, button');
@@ -374,16 +372,25 @@
     if (!element) return;
 
     const label = (
+      element.dataset.trackLabel ||
       element.dataset.track ||
       element.getAttribute('aria-label') ||
+      element.innerText ||
       element.textContent ||
-      element.href ||
+      element.getAttribute('title') ||
       'Elemen tanpa label'
-    ).replace(/\s+/g, ' ').trim().slice(0, 120);
+    )
+      .replace(/\s+/g, ' ')
+      .trim()
+      .slice(0, 500);
+
+    const target = element.tagName === 'A'
+      ? (element.href || null)
+      : (element.id || null);
 
     send('click', {
       label,
-      target: element.href || element.id || null
+      target
     });
   }, { passive: true });
 })();
