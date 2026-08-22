@@ -38,9 +38,7 @@
         "@id": "https://sewapscileungsi.com/#website",
         "url": "https://sewapscileungsi.com/",
         "name": "Eboni Space - Sewa PS Cileungsi",
-        "publisher": {
-          "@id": "https://sewapscileungsi.com/#organization"
-        },
+        "publisher": {"@id": "https://sewapscileungsi.com/#organization"},
         "inLanguage": "id-ID"
       },
       {
@@ -49,9 +47,7 @@
         "url": "https://sewapscileungsi.com/sewa-ps-harian/",
         "name": "Sewa PS Harian Cileungsi",
         "description": "Sewa PS4 dan PS5 harian di Cileungsi dengan pengantaran ke rumah sesuai jangkauan dan ketersediaan.",
-        "isPartOf": {
-          "@id": "https://sewapscileungsi.com/#website"
-        },
+        "isPartOf": {"@id": "https://sewapscileungsi.com/#website"},
         "inLanguage": "id-ID"
       },
       {
@@ -59,9 +55,7 @@
         "@id": "https://sewapscileungsi.com/sewa-ps-harian/#service",
         "name": "Sewa PS Harian Cileungsi",
         "serviceType": "Sewa harian PlayStation 4 dan PlayStation 5",
-        "provider": {
-          "@id": "https://sewapscileungsi.com/#organization"
-        },
+        "provider": {"@id": "https://sewapscileungsi.com/#organization"},
         "areaServed": [
           {"@type": "Place", "name": "Cileungsi"},
           {"@type": "Place", "name": "Jonggol"},
@@ -143,6 +137,8 @@
     .area-list a:hover{outline:1px solid var(--green);color:var(--green)}
     .notice{padding:24px;border:1px solid #3b4930;border-radius:var(--radius);background:rgba(183,245,74,.06);color:#d8e9bb}
     .notice strong{color:var(--green)}
+    .content-link{color:var(--green);font-weight:800}
+    .content-link:hover{text-decoration:underline}
     .faq{grid-template-columns:1fr 1fr}
     details{padding:19px 20px;background:var(--panel);border:1px solid var(--line);border-radius:14px}
     summary{cursor:pointer;font-weight:720}
@@ -259,6 +255,16 @@
         </div>
       </div>
       <aside class="notice"><strong>Perlu sewa hari ini?</strong><br>Tanyakan unit dan jadwal pengantaran melalui WhatsApp. Ketersediaan mengikuti kondisi unit dan cakupan layanan.</aside>
+    </div>
+  </section>
+
+  <section id="rental-lengkap">
+    <div class="wrap">
+      <div class="notice">
+        <strong>Lihat pilihan konsol PlayStation.</strong><br>
+        Untuk melihat pilihan PS4, PS5, game, dan layanan secara lengkap, kunjungi
+        <a href="../rental-playstation/" class="content-link">rental PS4 dan PS5 Eboni Space →</a>
+      </div>
     </div>
   </section>
 
