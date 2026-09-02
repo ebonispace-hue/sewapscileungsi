@@ -229,7 +229,16 @@
 </header>
 
 <main>
-  <section class="hero" id="home"><div class="wrap"><p class="eyebrow">Rental PlayStation Cileungsi &amp; Sekitar</p><h1>Sewa PS4 &amp; PS5 Cileungsi.<br><em>Antar 24 jam</em> ke rumah.</h1><p class="lead">Sewa dan rental PS4 serta PS5 untuk main di rumah di Cileungsi. Unit terawat, pilihan game lengkap, booking via WhatsApp, serta pengantaran 24 jam sesuai ketersediaan dan jangkauan.</p><div class="hero-actions"><a class="button primary" href="https://wa.me/6287816546467?text=Halo%20Eboni%20Space%2C%20saya%20mau%20sewa%20PS4%20atau%20PS5%20untuk%20area%20Cileungsi." target="_blank" rel="noopener">💬 Tanya Ketersediaan</a><a class="button ghost" href="./harga-sewa-ps-eboni-space/">💸 Cek Harga PS4</a><a class="button ghost" href="./rental-playstation/">🎮 Rental PlayStation</a><a class="button ghost" href="./sewa-ps-harian/">🗓️ Sewa PS Harian</a><a class="button ghost" href="#games">🔎 Cek Game</a><a class="button ghost" href="https://www.tiktok.com/@ebonispace" target="_blank" rel="noopener">🎵 Lihat TikTok</a><a class="button ghost" href="#unit">Lihat Pilihan Unit ↓</a></div><div class="chips"><span class="chip">PS4 • PS5</span><span class="chip">Pengantaran 24 jam</span><span class="chip">Sewa ke rumah</span><span class="chip">Area Cileungsi</span><span class="chip">Order via WhatsApp</span></div></div></section>
+  <section class="hero" id="home"><div class="wrap"><p class="eyebrow">Rental PlayStation Cileungsi &amp; Sekitar</p><h1>Sewa PS4 &amp; PS5 Cileungsi.<br><em>Antar 24 jam</em> ke rumah.</h1><p class="lead">Sewa dan rental PS4 serta PS5 untuk main di rumah di Cileungsi. Unit terawat, pilihan game lengkap, booking via WhatsApp, serta pengantaran 24 jam sesuai ketersediaan dan jangkauan.</p><div class="hero-actions"><a
+  class="button primary"
+  href="https://wa.me/6287816546467?text=Halo%20Eboni%20Space%2C%20saya%20mau%20sewa%20PS4%20atau%20PS5%20untuk%20area%20Cileungsi."
+  target="_blank"
+  rel="noopener"
+  data-track-label="WhatsApp — Hero tanya ketersediaan Cileungsi"
+>
+  💬 Tanya Ketersediaan
+</a>
+    <a class="button ghost" href="./harga-sewa-ps-eboni-space/">💸 Cek Harga PS4</a><a class="button ghost" href="./rental-playstation/">🎮 Rental PlayStation</a><a class="button ghost" href="./sewa-ps-harian/">🗓️ Sewa PS Harian</a><a class="button ghost" href="#games">🔎 Cek Game</a><a class="button ghost" href="https://www.tiktok.com/@ebonispace" target="_blank" rel="noopener">🎵 Lihat TikTok</a><a class="button ghost" href="#unit">Lihat Pilihan Unit ↓</a></div><div class="chips"><span class="chip">PS4 • PS5</span><span class="chip">Pengantaran 24 jam</span><span class="chip">Sewa ke rumah</span><span class="chip">Area Cileungsi</span><span class="chip">Order via WhatsApp</span></div></div></section>
   <section id="booking-bot">
   <div class="wrap">
     <div class="bot-booking">
@@ -244,12 +253,15 @@
             Anda akan mendapat kode booking otomatis dan admin akan menghubungi Anda.
           </p>
 
-          <a class="button primary"
-             href="https://wa.me/6287777250178?text=MENU"
-             target="_blank"
-             rel="noopener">
-            🤖 Booking Otomatis Sekarang
-          </a>
+          <a
+  class="button primary"
+  href="https://wa.me/6287777250178?text=MENU"
+  target="_blank"
+  rel="noopener"
+  data-track-label="WhatsApp Bot — Booking otomatis"
+>
+  🤖 Booking Otomatis Sekarang
+</a>
         </div>
 
         <div class="bot-flow" aria-label="Alur booking otomatis">
@@ -371,42 +383,133 @@
 <script>
 (() => {
   const TRACK_URL = 'https://traficeboni.ebonispace.workers.dev/track';
-  const SESSION_KEY = 'sewapscileungsi_session_id';
 
-  function getSessionId() {
-    let id = localStorage.getItem(SESSION_KEY);
+  const SESSION_KEY = 'eboni_analytics_session_id';
+  const SESSION_TIME_KEY = 'eboni_analytics_session_last_seen';
+  const VISITOR_KEY = 'eboni_analytics_visitor_id';
+
+  const SESSION_TIMEOUT_MS = 30 * 60 * 1000;
+
+  let sessionStartedAt = Date.now();
+  let maxEngagementMs = 0;
+  let engagementSent = false;
+
+  function makeId(prefix = 'eb') {
+    if (crypto.randomUUID) {
+      return `${prefix}_${crypto.randomUUID()}`;
+    }
+
+    return `${prefix}_${Date.now()}_${Math.random().toString(36).slice(2)}`;
+  }
+
+  function getVisitorId() {
+    let id = localStorage.getItem(VISITOR_KEY);
 
     if (!id) {
-      id = crypto.randomUUID
-        ? crypto.randomUUID()
-        : `eboni-${Date.now()}-${Math.random().toString(16).slice(2)}`;
-
-      localStorage.setItem(SESSION_KEY, id);
+      id = makeId('visitor');
+      localStorage.setItem(VISITOR_KEY, id);
     }
 
     return id;
   }
+
+  function getSessionId() {
+    const now = Date.now();
+    const lastSeen = Number(sessionStorage.getItem(SESSION_TIME_KEY) || 0);
+
+    let id = sessionStorage.getItem(SESSION_KEY);
+
+    if (!id || !lastSeen || now - lastSeen > SESSION_TIMEOUT_MS) {
+      id = makeId('session');
+      sessionStorage.setItem(SESSION_KEY, id);
+      sessionStartedAt = now;
+      maxEngagementMs = 0;
+      engagementSent = false;
+    }
+
+    sessionStorage.setItem(SESSION_TIME_KEY, String(now));
+
+    return id;
+  }
+
+  function touchSession() {
+  sessionStorage.setItem(SESSION_TIME_KEY, String(Date.now()));
+}
 
   function getPath() {
     const path = window.location.pathname || '/';
     return path === '/index.html' ? '/' : path;
   }
 
+  function getUtm() {
+  const params = new URLSearchParams(window.location.search);
+
+  const keys = [
+    'utm_source',
+    'utm_medium',
+    'utm_campaign',
+    'utm_content',
+    'utm_term',
+    'utm_id'
+  ];
+
+  const utm = {};
+
+  keys.forEach(key => {
+    const value = params.get(key);
+
+    if (value) {
+      sessionStorage.setItem(`eboni_${key}`, value);
+    }
+
+    utm[key] = value || sessionStorage.getItem(`eboni_${key}`) || '';
+  });
+
+  return utm;
+}
+
+  const visitorId = getVisitorId();
   const sessionId = getSessionId();
 
-  function send(eventName, extra = {}) {
-    const payload = {
+  function updateEngagement() {
+    if (document.visibilityState !== 'visible') return;
+
+    touchSession();
+
+    const elapsed = Math.max(0, Date.now() - sessionStartedAt);
+    maxEngagementMs = Math.max(maxEngagementMs, elapsed);
+  }
+
+  function buildPayload(eventName, extra = {}) {
+    updateEngagement();
+
+    return {
       session_id: sessionId,
+      visitor_id: visitorId,
       event_name: eventName,
       path: getPath(),
-      title: document.title,
+      title: document.title || '',
       label: extra.label || null,
       target: extra.target || null,
       referrer: document.referrer || null,
-      screen_size: `${screen.width}x${screen.height}`
+      screen_size: `${window.innerWidth}x${window.innerHeight}`,
+      engagement_ms: extra.engagement_ms ?? maxEngagementMs,
+      is_engaged: extra.is_engaged ?? (maxEngagementMs >= 10000 ? 1 : 0),
+      ...getUtm()
     };
+  }
 
-    const body = JSON.stringify(payload);
+  function send(eventName, extra = {}, useBeacon = false) {
+    const body = JSON.stringify(buildPayload(eventName, extra));
+
+    if (useBeacon && navigator.sendBeacon) {
+      const sent = navigator.sendBeacon(
+        TRACK_URL,
+        new Blob([body], { type: 'application/json' })
+      );
+
+      if (sent) return;
+    }
 
     fetch(TRACK_URL, {
       method: 'POST',
@@ -418,45 +521,95 @@
       },
       body
     }).catch(() => {
-      navigator.sendBeacon(
-        TRACK_URL,
-        new Blob([body], { type: 'text/plain;charset=UTF-8' })
-      );
+      if (navigator.sendBeacon) {
+        navigator.sendBeacon(
+          TRACK_URL,
+          new Blob([body], { type: 'application/json' })
+        );
+      }
     });
   }
 
   send('page_view');
 
-  document.addEventListener('click', (event) => {
-    const element = event.target.closest('a, button');
+  ['scroll', 'pointerdown', 'keydown', 'touchstart'].forEach(eventName => {
+    window.addEventListener(eventName, updateEngagement, {
+      passive: true
+    });
+  });
+
+  document.addEventListener('click', event => {
+    const element = event.target.closest('a, button, [data-track]');
 
     if (!element) return;
+
+    updateEngagement();
 
     const label = (
       element.dataset.trackLabel ||
       element.dataset.track ||
       element.getAttribute('aria-label') ||
+      element.getAttribute('title') ||
       element.innerText ||
       element.textContent ||
-      element.getAttribute('title') ||
+      element.value ||
       'Elemen tanpa label'
     )
       .replace(/\s+/g, ' ')
       .trim()
       .slice(0, 500);
 
-    const target = element.tagName === 'A'
-      ? (element.href || null)
-      : (element.id || null);
+    const target =
+      element.href ||
+      element.dataset.href ||
+      element.dataset.url ||
+      element.dataset.target ||
+      element.getAttribute('formaction') ||
+      element.getAttribute('action') ||
+      element.id ||
+      null;
 
-    send('click', { label, target });
+    const isWhatsapp = /wa\.me|api\.whatsapp\.com|whatsapp/i.test(target || '');
+
+   send(
+  isWhatsapp ? 'whatsapp_click' : 'click',
+  {
+    label,
+    target,
+    engagement_ms: maxEngagementMs,
+    is_engaged: maxEngagementMs >= 10000 ? 1 : 0
+  },
+  isWhatsapp
+);
   }, { passive: true });
+
+  function sendEngagement() {
+    updateEngagement();
+
+    if (engagementSent || maxEngagementMs < 10000) return;
+
+    engagementSent = true;
+
+    send(
+      'engagement',
+      {
+        label: 'Engagement 10 detik',
+        target: null,
+        engagement_ms: maxEngagementMs,
+        is_engaged: 1
+      },
+      true
+    );
+  }
+
+  window.addEventListener('pagehide', sendEngagement);
+
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'hidden') {
+      sendEngagement();
+    }
+  });
 })();
-
-
-
-
-  
 </script>
 </body>
 </html>
