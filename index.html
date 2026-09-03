@@ -387,7 +387,6 @@
   const SESSION_KEY = 'eboni_analytics_session_id';
   const SESSION_TIME_KEY = 'eboni_analytics_session_last_seen';
   const VISITOR_KEY = 'eboni_analytics_visitor_id';
-
   const SESSION_TIMEOUT_MS = 30 * 60 * 1000;
 
   let sessionStartedAt = Date.now();
@@ -433,8 +432,8 @@
   }
 
   function touchSession() {
-  sessionStorage.setItem(SESSION_TIME_KEY, String(Date.now()));
-}
+    sessionStorage.setItem(SESSION_TIME_KEY, String(Date.now()));
+  }
 
   function getPath() {
     const path = window.location.pathname || '/';
@@ -442,31 +441,31 @@
   }
 
   function getUtm() {
-  const params = new URLSearchParams(window.location.search);
+    const params = new URLSearchParams(window.location.search);
 
-  const keys = [
-    'utm_source',
-    'utm_medium',
-    'utm_campaign',
-    'utm_content',
-    'utm_term',
-    'utm_id'
-  ];
+    const keys = [
+      'utm_source',
+      'utm_medium',
+      'utm_campaign',
+      'utm_content',
+      'utm_term',
+      'utm_id'
+    ];
 
-  const utm = {};
+    const utm = {};
 
-  keys.forEach(key => {
-    const value = params.get(key);
+    keys.forEach(key => {
+      const value = params.get(key);
 
-    if (value) {
-      sessionStorage.setItem(`eboni_${key}`, value);
-    }
+      if (value) {
+        sessionStorage.setItem(`eboni_${key}`, value);
+      }
 
-    utm[key] = value || sessionStorage.getItem(`eboni_${key}`) || '';
-  });
+      utm[key] = value || sessionStorage.getItem(`eboni_${key}`) || '';
+    });
 
-  return utm;
-}
+    return utm;
+  }
 
   const visitorId = getVisitorId();
   const sessionId = getSessionId();
@@ -499,17 +498,8 @@
     };
   }
 
-  function send(eventName, extra = {}, useBeacon = false) {
+  function send(eventName, extra = {}) {
     const body = JSON.stringify(buildPayload(eventName, extra));
-
-    if (useBeacon && navigator.sendBeacon) {
-      const sent = navigator.sendBeacon(
-        TRACK_URL,
-        new Blob([body], { type: 'application/json' })
-      );
-
-      if (sent) return;
-    }
 
     fetch(TRACK_URL, {
       method: 'POST',
@@ -520,13 +510,8 @@
         'Content-Type': 'application/json'
       },
       body
-    }).catch(() => {
-      if (navigator.sendBeacon) {
-        navigator.sendBeacon(
-          TRACK_URL,
-          new Blob([body], { type: 'application/json' })
-        );
-      }
+    }).catch(error => {
+      console.warn('Tracking gagal dikirim:', eventName, error);
     });
   }
 
@@ -569,18 +554,19 @@
       element.id ||
       null;
 
-    const isWhatsapp = /wa\.me|api\.whatsapp\.com|whatsapp/i.test(target || '');
+    const isWhatsapp = /wa\.me|api\.whatsapp\.com|whatsapp/i.test(
+      target || ''
+    );
 
-   send(
-  isWhatsapp ? 'whatsapp_click' : 'click',
-  {
-    label,
-    target,
-    engagement_ms: maxEngagementMs,
-    is_engaged: maxEngagementMs >= 10000 ? 1 : 0
-  },
-  isWhatsapp
-);
+    send(
+      isWhatsapp ? 'whatsapp_click' : 'click',
+      {
+        label,
+        target,
+        engagement_ms: maxEngagementMs,
+        is_engaged: maxEngagementMs >= 10000 ? 1 : 0
+      }
+    );
   }, { passive: true });
 
   function sendEngagement() {
@@ -590,16 +576,12 @@
 
     engagementSent = true;
 
-    send(
-      'engagement',
-      {
-        label: 'Engagement 10 detik',
-        target: null,
-        engagement_ms: maxEngagementMs,
-        is_engaged: 1
-      },
-      true
-    );
+    send('engagement', {
+      label: 'Engagement 10 detik',
+      target: null,
+      engagement_ms: maxEngagementMs,
+      is_engaged: 1
+    });
   }
 
   window.addEventListener('pagehide', sendEngagement);
