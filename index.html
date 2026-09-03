@@ -524,50 +524,102 @@
   });
 
   document.addEventListener('click', event => {
-    const element = event.target.closest('a, button, [data-track]');
+  const element = event.target.closest('a, button, [data-track]');
 
-    if (!element) return;
+  if (!element) return;
 
-    updateEngagement();
+  updateEngagement();
 
-    const label = (
-      element.dataset.trackLabel ||
-      element.dataset.track ||
-      element.getAttribute('aria-label') ||
-      element.getAttribute('title') ||
-      element.innerText ||
-      element.textContent ||
-      element.value ||
-      'Elemen tanpa label'
-    )
-      .replace(/\s+/g, ' ')
-      .trim()
-      .slice(0, 500);
+  const label = (
+    element.dataset.trackLabel ||
+    element.dataset.track ||
+    element.getAttribute('aria-label') ||
+    element.getAttribute('title') ||
+    element.innerText ||
+    element.textContent ||
+    element.value ||
+    'Elemen tanpa label'
+  )
+    .replace(/\s+/g, ' ')
+    .trim()
+    .slice(0, 500);
 
-    const target =
-      element.href ||
-      element.dataset.href ||
-      element.dataset.url ||
-      element.dataset.target ||
-      element.getAttribute('formaction') ||
-      element.getAttribute('action') ||
-      element.id ||
-      null;
+  const target =
+    element.href ||
+    element.dataset.href ||
+    element.dataset.url ||
+    element.dataset.target ||
+    element.getAttribute('formaction') ||
+    element.getAttribute('action') ||
+    element.id ||
+    null;
 
-    const isWhatsapp = /wa\.me|api\.whatsapp\.com|whatsapp/i.test(
-      target || ''
-    );
+  const isWhatsapp = /wa\.me|api\.whatsapp\.com|whatsapp/i.test(
+    target || ''
+  );
 
-    send(
-      isWhatsapp ? 'whatsapp_click' : 'click',
-      {
-        label,
-        target,
-        engagement_ms: maxEngagementMs,
-        is_engaged: maxEngagementMs >= 10000 ? 1 : 0
+  if (!isWhatsapp) {
+    send('click', {
+      label,
+      target,
+      engagement_ms: maxEngagementMs,
+      is_engaged: maxEngagementMs >= 10000 ? 1 : 0
+    });
+
+    return;
+  }
+
+  if (element.tagName !== 'A' || !target) {
+    send('whatsapp_click', {
+      label,
+      target,
+      engagement_ms: maxEngagementMs,
+      is_engaged: maxEngagementMs >= 10000 ? 1 : 0
+    });
+
+    return;
+  }
+
+  event.preventDefault();
+
+  const openInNewTab = element.target === '_blank';
+
+  const trackingBody = JSON.stringify(
+    buildPayload('whatsapp_click', {
+      label,
+      target,
+      engagement_ms: maxEngagementMs,
+      is_engaged: maxEngagementMs >= 10000 ? 1 : 0
+    })
+  );
+
+  fetch(TRACK_URL, {
+    method: 'POST',
+    mode: 'cors',
+    credentials: 'omit',
+    keepalive: true,
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: trackingBody
+  })
+    .catch(() => {})
+    .finally(() => {
+      if (openInNewTab) {
+        window.open(target, '_blank', 'noopener');
+      } else {
+        window.location.href = target;
       }
-    );
-  }, { passive: true });
+    });
+
+  setTimeout(() => {
+    if (openInNewTab) {
+      window.open(target, '_blank', 'noopener');
+    } else {
+      window.location.href = target;
+    }
+  }, 700);
+}, { passive: false });
 
   function sendEngagement() {
     updateEngagement();
