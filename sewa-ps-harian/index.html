@@ -157,17 +157,19 @@
 .brand{gap:0}
 .brand-logo-full{position:relative;display:inline-block;height:58px;line-height:0;animation:logoIn .9s cubic-bezier(.2,.8,.2,1) both}
 .brand-logo-full img{height:100%;width:auto;display:block;animation:logoGlow 3.6s ease-in-out infinite}
-.brand-logo-full::after{content:"";position:absolute;inset:0;pointer-events:none;
-  background:linear-gradient(105deg,transparent 38%,rgba(255,255,255,.85) 50%,transparent 62%) no-repeat;
-  background-size:250% 100%;background-position:150% 0;
-  -webkit-mask:url(/logo-eboni-full.webp) center/contain no-repeat;mask:url(/logo-eboni-full.webp) center/contain no-repeat;
-  animation:logoShine 5s ease-in-out 1.2s infinite}
+.orbit-shine{position:absolute;inset:0;pointer-events:none;overflow:hidden;mix-blend-mode:screen;
+  -webkit-mask:url(/ring-mask.png) 0 0/100% 100% no-repeat;mask:url(/ring-mask.png) 0 0/100% 100% no-repeat}
+.orbit-shine::before{content:"";position:absolute;left:20.4%;top:48%;width:160%;aspect-ratio:1;
+  transform:translate(-50%,-50%) rotate(0deg);
+  background:conic-gradient(from 0deg,transparent 0deg 240deg,rgba(125,211,255,.35) 295deg,rgba(210,240,255,.95) 346deg,#fff 355deg,transparent 360deg);
+  animation:orbitSpin 3.2s linear 1s infinite}
+@keyframes orbitSpin{to{transform:translate(-50%,-50%) rotate(360deg)}}
 .brand:hover .brand-logo-full img{animation-duration:1.4s}
 @keyframes logoIn{from{opacity:0;transform:translateY(-6px) scale(.94)}to{opacity:1;transform:none}}
 @keyframes logoGlow{0%,100%{filter:drop-shadow(0 0 3px rgba(63,184,255,.35))}50%{filter:drop-shadow(0 0 10px rgba(63,184,255,.75)) drop-shadow(0 0 18px rgba(124,92,255,.35))}}
-@keyframes logoShine{0%{background-position:150% 0}35%,100%{background-position:-50% 0}}
+
 @media(max-width:780px){.brand-logo-full{height:44px}}
-@media(prefers-reduced-motion:reduce){.brand-logo-full,.brand-logo-full img,.brand-logo-full::after{animation:none}}
+@media(prefers-reduced-motion:reduce){.brand-logo-full,.brand-logo-full img,.orbit-shine::before{animation:none}.orbit-shine{display:none}}
 .button.primary{background:linear-gradient(135deg,#46c2ff,#5a8dff);border-color:transparent;color:#03122a}
 .button.primary:hover{background:linear-gradient(135deg,#7dd3ff,#7ea6ff)}
 </style>
@@ -176,7 +178,7 @@
 <header class="nav">
   <div class="wrap">
     <a class="brand" href="../" aria-label="Eboni Space Beranda">
-      <span class="brand-logo-full"><img src="/logo-eboni-full.webp" alt="Eboni Space" width="263" height="100" decoding="async" fetchpriority="high"></span>
+      <span class="brand-logo-full"><img src="/logo-eboni-full.webp" alt="Eboni Space" width="263" height="100" decoding="async" fetchpriority="high"><span class="orbit-shine" aria-hidden="true"></span></span>
     </a>
     <button class="menu-toggle" type="button" aria-label="Buka menu navigasi" aria-controls="main-menu" aria-expanded="false">
       <span></span><span></span><span></span>
