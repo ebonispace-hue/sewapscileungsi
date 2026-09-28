@@ -7,11 +7,11 @@
   <title>Artikel & Tips Sewa PS Cileungsi | Eboni Space</title>
   <meta name="description" content="Artikel dan tips sewa PS di Cileungsi dari Eboni Space. Panduan booking WhatsApp bot, harga sewa, pilihan PS4 dan PS5, game, serta pengantaran.">
   <meta name="robots" content="index,follow,max-image-preview:large">
-  <meta name="theme-color" content="#09090b">
+  <meta name="theme-color" content="#050a18">
   <link rel="canonical" href="https://sewapscileungsi.com/artikel/">
 
-  <link rel="icon" type="image/png" href="../eboni.png">
-  <link rel="apple-touch-icon" href="../eboni.png">
+  <link rel="icon" type="image/png" href="/icon-eboni.png">
+  <link rel="apple-touch-icon" href="/icon-eboni.png">
 
   <meta property="og:title" content="Artikel & Tips Sewa PS Cileungsi | Eboni Space">
   <meta property="og:description" content="Panduan booking WhatsApp bot, harga sewa, tips memilih PS4 atau PS5, game mabar, dan informasi sewa PS antar ke rumah.">
@@ -37,13 +37,13 @@
 
   <style>
     :root{
-      --bg:#09090b;
-      --panel:#151519;
-      --line:#2c2c33;
-      --text:#f5f5f4;
-      --muted:#b5b5bd;
-      --green:#b7f54a;
-      --dark:#10130c;
+      --bg:#050a18;
+      --panel:#0c1428;
+      --line:#1c2a48;
+      --text:#f1f5ff;
+      --muted:#a9b6d3;
+      --accent:#3fb8ff;
+      --dark:#03122a;
       --radius:22px;
     }
 
@@ -64,7 +64,7 @@
       position:sticky;
       top:0;
       z-index:10;
-      background:rgba(9,9,11,.9);
+      background:rgba(5,10,24,.9);
       border-bottom:1px solid rgba(255,255,255,.07);
       backdrop-filter:blur(14px);
     }
@@ -90,7 +90,7 @@
       height:32px;
       object-fit:cover;
       border-radius:50%;
-      border:2px solid var(--green);
+      border:2px solid var(--accent);
     }
 
     .back-link{
@@ -99,7 +99,7 @@
       font-weight:700;
     }
 
-    .back-link:hover{color:var(--green)}
+    .back-link:hover{color:var(--accent)}
 
     .button{
       display:inline-flex;
@@ -114,25 +114,25 @@
     }
 
     .button.primary{
-      background:var(--green);
-      color:#10130c;
+      background:var(--accent);
+      color:#03122a;
     }
 
     .button.primary:hover{
       transform:translateY(-2px);
-      background:#c9ff6b;
+      background:#7dd3ff;
     }
 
     .hero{
       padding:82px 0 55px;
       background:
-        radial-gradient(circle at 84% 8%,rgba(183,245,74,.17),transparent 29%),
+        radial-gradient(circle at 84% 8%,rgba(63,184,255,.17),transparent 29%),
         radial-gradient(circle at 17% 0%,rgba(102,75,255,.14),transparent 25%);
     }
 
     .eyebrow{
       margin:0 0 14px;
-      color:var(--green);
+      color:var(--accent);
       font-size:13px;
       font-weight:800;
       letter-spacing:.13em;
@@ -191,7 +191,7 @@
       flex-direction:column;
       overflow:hidden;
       padding:25px;
-      background:linear-gradient(145deg,#1a1a20,#121216);
+      background:linear-gradient(145deg,#111b33,#0a1227);
       border:1px solid var(--line);
       border-radius:var(--radius);
     }
@@ -212,13 +212,13 @@
       place-items:center;
       margin-bottom:20px;
       border-radius:15px;
-      background:#25252c;
+      background:#1a2742;
       font-size:25px;
     }
 
     .article-category{
       margin-bottom:10px;
-      color:var(--green);
+      color:var(--accent);
       font-size:12px;
       font-weight:850;
       letter-spacing:.1em;
@@ -238,7 +238,7 @@
 
     .content-card{
       padding:26px;
-      background:linear-gradient(145deg,#1a1a20,#121216);
+      background:linear-gradient(145deg,#111b33,#0a1227);
       border:1px solid var(--line);
       border-radius:var(--radius);
     }
@@ -263,7 +263,7 @@
 
     .faq-list details{
       padding:20px 22px;
-      background:linear-gradient(145deg,#1a1a20,#121216);
+      background:linear-gradient(145deg,#111b33,#0a1227);
       border:1px solid var(--line);
       border-radius:16px;
     }
@@ -285,8 +285,8 @@
       justify-content:space-between;
       gap:25px;
       padding:35px;
-      background:var(--green);
-      color:#10130c;
+      background:var(--accent);
+      color:#03122a;
       border-radius:28px;
     }
 
@@ -294,18 +294,18 @@
 
     .cta .button{
       flex-shrink:0;
-      background:#10130c;
-      color:#f5f5f4;
+      background:#03122a;
+      color:#f1f5ff;
     }
 
     .cta .button:hover{
       transform:translateY(-2px);
-      background:#25252c;
+      background:#1a2742;
     }
 
     footer{
       padding:32px 0 42px;
-      color:#96969e;
+      color:#8796b8;
       font-size:14px;
     }
 
@@ -334,15 +334,31 @@
       section{padding:48px 0}
       .cta{padding:27px}
     }
-  </style>
+  
+.brand{gap:0}
+.brand-logo-full{position:relative;display:inline-block;height:58px;line-height:0;animation:logoIn .9s cubic-bezier(.2,.8,.2,1) both}
+.brand-logo-full img{height:100%;width:auto;display:block;animation:logoGlow 3.6s ease-in-out infinite}
+.brand-logo-full::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(105deg,transparent 38%,rgba(255,255,255,.85) 50%,transparent 62%) no-repeat;
+  background-size:250% 100%;background-position:150% 0;
+  -webkit-mask:url(/logo-eboni-full.webp) center/contain no-repeat;mask:url(/logo-eboni-full.webp) center/contain no-repeat;
+  animation:logoShine 5s ease-in-out 1.2s infinite}
+.brand:hover .brand-logo-full img{animation-duration:1.4s}
+@keyframes logoIn{from{opacity:0;transform:translateY(-6px) scale(.94)}to{opacity:1;transform:none}}
+@keyframes logoGlow{0%,100%{filter:drop-shadow(0 0 3px rgba(63,184,255,.35))}50%{filter:drop-shadow(0 0 10px rgba(63,184,255,.75)) drop-shadow(0 0 18px rgba(124,92,255,.35))}}
+@keyframes logoShine{0%{background-position:150% 0}35%,100%{background-position:-50% 0}}
+@media(max-width:780px){.brand-logo-full{height:44px}}
+@media(prefers-reduced-motion:reduce){.brand-logo-full,.brand-logo-full img,.brand-logo-full::after{animation:none}}
+.button.primary{background:linear-gradient(135deg,#46c2ff,#5a8dff);border-color:transparent;color:#03122a}
+.button.primary:hover{background:linear-gradient(135deg,#7dd3ff,#7ea6ff)}
+</style>
 </head>
 
 <body>
   <header class="nav">
     <div class="wrap">
       <a class="brand" href="/" aria-label="Kembali ke beranda Eboni Space">
-        <img class="brand-logo" src="../eboni.png" alt="Logo Eboni Space">
-        <span>EBONI SPACE</span>
+        <span class="brand-logo-full"><img src="/logo-eboni-full.webp" alt="Eboni Space" width="263" height="100" decoding="async" fetchpriority="high"></span>
       </a>
 
       <a class="back-link" href="/">← Kembali ke Beranda</a>
@@ -509,7 +525,7 @@
       <div class="wrap">
         <div class="cta">
           <div>
-            <p class="eyebrow" style="color:#263116">Siap main?</p>
+            <p class="eyebrow" style="color:#12264a">Siap main?</p>
             <h2>Booking PS4 atau PS5 sekarang lewat WhatsApp bot.</h2>
           </div>
 
