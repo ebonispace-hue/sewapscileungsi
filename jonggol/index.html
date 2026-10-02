@@ -79,6 +79,13 @@
 @media(prefers-reduced-motion:reduce){.orbit-shine::before{animation:none}.orbit-shine{display:none}}
 .button.primary{background:linear-gradient(135deg,#46c2ff,#5a8dff);border-color:transparent;color:#03122a}
 .button.primary:hover{background:linear-gradient(135deg,#7dd3ff,#7ea6ff)}
+.dist-table{width:100%;border-collapse:collapse;margin-top:18px;font-size:15px}
+.dist-table th,.dist-table td{padding:11px 10px;border-bottom:1px solid var(--line);text-align:left}
+.dist-table th{color:var(--accent);font-size:12px;letter-spacing:.08em;text-transform:uppercase}
+.dist-table td{color:#cbd6ee}.dist-table td.num{white-space:nowrap;font-variant-numeric:tabular-nums}
+.psbox-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:16px}.psbox-grid .card p{min-height:0}.psbox-grid .card ul{padding-left:20px;color:var(--muted)}
+.stat{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0 4px}.stat span{padding:8px 12px;border:1px solid #2b3a5c;border-radius:999px;color:#d6ecff;font-size:14px;font-weight:700}
+@media(max-width:780px){.psbox-grid{grid-template-columns:1fr}.dist-table{font-size:14px}.dist-table th,.dist-table td{padding:10px 6px}}
 </style>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Apakah Eboni Space melayani sewa PS di Jonggol?", "acceptedAnswer": {"@type": "Answer", "text": "Ya, Jonggol termasuk area yang ditargetkan untuk layanan Eboni Space. Konfirmasi pin lokasi melalui WhatsApp karena jangkauan dan jadwal pengantaran dapat berubah."}}, {"@type": "Question", "name": "Apakah PS4 dan PS5 bisa diantar ke Jonggol?", "acceptedAnswer": {"@type": "Answer", "text": "Bisa sesuai jangkauan, jadwal, dan ketersediaan unit. Kirim pin lokasi di Jonggol kepada admin untuk konfirmasi pengantaran."}}, {"@type": "Question", "name": "Apakah bisa sewa harian atau beberapa jam?", "acceptedAnswer": {"@type": "Answer", "text": "Durasi sewa dapat disesuaikan dengan paket yang tersedia. Tanyakan pilihan durasi dan harga terbaru kepada admin saat booking."}}, {"@type": "Question", "name": "Apakah bisa request game?", "acceptedAnswer": {"@type": "Answer", "text": "Bisa. Sampaikan game yang ingin dimainkan sebelum booking dikonfirmasi agar admin dapat mengecek ketersediaannya."}}]}</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Beranda", "item": "https://sewapscileungsi.com/"}, {"@type": "ListItem", "position": 2, "name": "Jonggol", "item": "https://sewapscileungsi.com/jonggol/"}]}</script>
@@ -119,11 +126,16 @@
           <a href="/" aria-label="Sewa PS4 dan PS5 Cileungsi">Cileungsi</a>
           <a href="/cileungsi-kidul/" aria-label="Sewa PS4 dan PS5 Cileungsi Kidul">Cileungsi Kidul</a>
           <a href="/cipenjo/" aria-label="Sewa PS4 dan PS5 Cipenjo">Cipenjo</a>
-          <a href="/jatisari/" aria-label="Sewa PS4 dan PS5 Jatisari">Jatisari</a>
           <a href="/metland-cileungsi/" aria-label="Sewa PS4 dan PS5 Metland Cileungsi">Metland Cileungsi</a>
-          <a href="/limusnunggal/" aria-label="Sewa PS4 dan PS5 Limus Nunggal">Limus Nunggal</a>
-          <a href="/gandoang/" aria-label="Sewa PS4 dan PS5 Gandoang">Gandoang</a>
+          <a href="/pasirangin/" aria-label="Sewa PS4 dan PS5 Pasirangin">Pasirangin</a>
           <a href="/mekarsari/" aria-label="Sewa PS4 dan PS5 Mekarsari">Mekarsari</a>
+          <a href="/limusnunggal/" aria-label="Sewa PS4 dan PS5 Limus Nunggal">Limus Nunggal</a>
+          <a href="/dayeuh/" aria-label="Sewa PS4 dan PS5 Dayeuh">Dayeuh</a>
+          <a href="/mampir/" aria-label="Sewa PS4 dan PS5 Mampir">Mampir</a>
+          <a href="/gandoang/" aria-label="Sewa PS4 dan PS5 Gandoang">Gandoang</a>
+          <a href="/situsari/" aria-label="Sewa PS4 dan PS5 Situsari">Situsari</a>
+          <a href="/cipeucang/" aria-label="Sewa PS4 dan PS5 Cipeucang">Cipeucang</a>
+          <a href="/jatisari/" aria-label="Sewa PS4 dan PS5 Jatisari">Jatisari</a>
           <a href="/klapanunggal/" aria-label="Sewa PS4 dan PS5 Klapanunggal">Klapanunggal</a>
           <a href="/jonggol/" aria-label="Sewa PS4 dan PS5 Jonggol">Jonggol</a>
           <a href="/citra-indah/" aria-label="Sewa PS4 dan PS5 Citra Indah">Citra Indah</a>
@@ -131,16 +143,45 @@
           <a href="/kota-wisata/" aria-label="Sewa PS4 dan PS5 Kota Wisata">Kota Wisata</a>
           <a href="/cikeas/" aria-label="Sewa PS4 dan PS5 Cikeas">Cikeas</a>
           <a href="/cibubur/" aria-label="Sewa PS4 dan PS5 Cibubur">Cibubur</a>
+          <a href="/jatisampurna/" aria-label="Sewa PS4 dan PS5 Jatisampurna">Jatisampurna</a>
+          <a href="/bantar-gebang/" aria-label="Sewa PS4 dan PS5 Bantar Gebang">Bantar Gebang</a>
           <a href="/setu/" aria-label="Sewa PS4 dan PS5 Setu">Setu</a>
+          <a href="/tapos/" aria-label="Sewa PS4 dan PS5 Tapos">Tapos</a>
         </div>
         <p class="eyebrow" style="margin-top:28px">Panduan sebelum sewa</p>
         <div class="area-list" style="margin-top:12px;margin-bottom:24px">
+          <a href="/artikel/sewa-ps-box-cileungsi-10-km/">Sewa PS Box radius 10 km</a>
           <a href="/artikel/sewa-ps-antar-cileungsi-sekitar/">Sewa PS antar ke rumah</a>
           <a href="/artikel/panduan-sewa-ps-cileungsi/">Panduan sewa PS harian</a>
           <a href="/artikel/sewa-ps-acara-ulang-tahun/">Sewa PS untuk ulang tahun</a>
         </div></div><aside class="notice"><strong>Butuh sewa mendadak?</strong><br>Pengantaran tersedia 24 jam sesuai ketersediaan. Chat admin untuk cek unit dan jadwal pengantaran.</aside></div></section>
 
-<section id="faq"><div class="wrap"><div class="section-head"><h2>FAQ sewa PS Jonggol.</h2><p>Jawaban singkat untuk pertanyaan yang umum sebelum booking.</p></div><div class="grid faq"><details><summary>Apakah Eboni Space melayani sewa PS di Jonggol?</summary><p>Ya, Jonggol termasuk area yang ditargetkan untuk layanan Eboni Space. Konfirmasi pin lokasi melalui WhatsApp karena jangkauan dan jadwal pengantaran dapat berubah.</p></details><details><summary>Apakah PS4 dan PS5 bisa diantar ke Jonggol?</summary><p>Bisa sesuai jangkauan, jadwal, dan ketersediaan unit. Kirim pin lokasi di Jonggol kepada admin untuk konfirmasi pengantaran.</p></details><details><summary>Apakah bisa sewa harian atau beberapa jam?</summary><p>Durasi sewa dapat disesuaikan dengan paket yang tersedia. Tanyakan pilihan durasi dan harga terbaru kepada admin saat booking.</p></details><details><summary>Apakah bisa request game?</summary><p>Bisa. Sampaikan game yang ingin dimainkan sebelum booking dikonfirmasi agar admin dapat mengecek ketersediaannya.</p></details></div></div></section>
+<section id="ps-box">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Sewa PS Box Jonggol.</h2>
+        <p>PS Box di Eboni Space berarti PS4 atau PS5 lengkap dengan stik yang diantar ke rumah. TV 32 inci bisa ditambah saat booking.</p>
+      </div>
+      <div class="psbox-grid">
+        <article class="card">
+          <div class="card-icon">📏</div>
+          <h3>Jarak Jonggol dari Eboni Space</h3>
+          <div class="stat"><span>Kecamatan Jonggol, Kabupaten Bogor</span><span>Jarak ±9–12 km</span></div>
+          <table class="dist-table"><thead><tr><th>Wilayah</th><th>Jarak</th><th>Ongkir</th></tr></thead><tbody><tr><td>Singasari</td><td class="num">±8,8 km</td><td>Biaya antar dikonfirmasi</td></tr><tr><td>Sukamaju</td><td class="num">±9,4 km</td><td>Biaya antar dikonfirmasi</td></tr><tr><td>Sukamanah</td><td class="num">±10,6 km</td><td>Biaya antar dikonfirmasi</td></tr><tr><td>Pasar Jonggol</td><td class="num">±12,1 km</td><td>Biaya antar dikonfirmasi</td></tr></tbody></table>
+          <p style="margin-top:14px;color:var(--muted);font-size:14px">Jonggol berada di luar radius gratis ongkir. Untuk jarak ini, paket 24 jam ke atas lebih sepadan. Jarak garis lurus dari titik Google Maps Eboni Space (data peta OpenStreetMap); ongkir final dihitung admin dari pin Anda.</p>
+        </article>
+        <article class="card">
+          <div class="card-icon">📦</div>
+          <h3>Isi paket PS Box</h3>
+          <ul><li>PS4 atau PS5 sesuai ketersediaan</li><li>2 stik (paket 3–24 jam) atau 3 stik (paket 2–3 hari)</li><li>Game dipilih sebelum booking</li><li>Tambahan TV 32 inci bila diperlukan</li><li>Jaminan antar ke rumah cukup KTP</li></ul>
+          <a class="button primary" href="https://wa.me/6287816546467?text=Halo%20Eboni%20Space%2C%20saya%20mau%20sewa%20PS%20Box%20untuk%20area%20Jonggol.%20Ini%20pin%20lokasi%20saya%3A" target="_blank" rel="noopener">📦 Sewa PS Box Jonggol</a>
+          <a class="button ghost" href="/artikel/sewa-ps-box-cileungsi-10-km/">Semua wilayah 10 km</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq"><div class="wrap"><div class="section-head"><h2>FAQ sewa PS Jonggol.</h2><p>Jawaban singkat untuk pertanyaan yang umum sebelum booking.</p></div><div class="grid faq"><details><summary>Apakah Eboni Space melayani sewa PS di Jonggol?</summary><p>Ya, Jonggol termasuk area yang ditargetkan untuk layanan Eboni Space. Konfirmasi pin lokasi melalui WhatsApp karena jangkauan dan jadwal pengantaran dapat berubah.</p></details><details><summary>Apakah PS4 dan PS5 bisa diantar ke Jonggol?</summary><p>Bisa sesuai jangkauan, jadwal, dan ketersediaan unit. Kirim pin lokasi di Jonggol kepada admin untuk konfirmasi pengantaran.</p></details><details><summary>Apakah bisa sewa harian atau beberapa jam?</summary><p>Durasi sewa dapat disesuaikan dengan paket yang tersedia. Tanyakan pilihan durasi dan harga terbaru kepada admin saat booking.</p></details><details><summary>Apakah bisa request game?</summary><p>Bisa. Sampaikan game yang ingin dimainkan sebelum booking dikonfirmasi agar admin dapat mengecek ketersediaannya.</p></details></div></div></section>
 
 <section><div class="wrap"><div class="cta"><div><p class="eyebrow" style="color:#12264a">Ready to play?</p><h2>Booking sewa PS4 atau PS5 Jonggol sekarang.</h2></div><a class="button" href="https://wa.me/6287816546467?text=Halo%20Eboni%20Space%2C%20saya%20mau%20sewa%20PS4%20atau%20PS5%20untuk%20area%20Jonggol." target="_blank" rel="noopener">Chat WhatsApp →</a></div></div></section>
 </main>
