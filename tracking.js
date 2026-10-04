@@ -1,12 +1,14 @@
 /* =====================================================
    Pelacakan Eboni Space
    - Meta Pixel (dataset "Rat1", ID 1239338047134772)
-   - Event "Contact" setiap ada klik tombol WhatsApp
-   GA4 bisa ditambahkan di file ini nanti, supaya semua
-   halaman ikut terpasang tanpa mengubah tiap halaman.
+   - Google Analytics 4 (G-P8VT5KGDBM)
+   - Klik tombol WhatsApp = "Contact" (Meta) dan
+     "generate_lead" (GA4)
+   Semua halaman memuat file ini, jadi perubahan cukup di sini.
 ===================================================== */
 (function () {
   var PIXEL_ID = "1239338047134772";
+  var GA4_ID = "G-P8VT5KGDBM";
   var NOMOR_BOT = "6283187916091";
 
   /* Kode dasar Meta Pixel */
@@ -24,6 +26,16 @@
   fbq("init", PIXEL_ID);
   fbq("track", "PageView");
 
+  /* Google Analytics 4 */
+  var gaScript = document.createElement("script");
+  gaScript.async = true;
+  gaScript.src = "https://www.googletagmanager.com/gtag/js?id=" + GA4_ID;
+  document.head.appendChild(gaScript);
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
+  gtag("js", new Date());
+  gtag("config", GA4_ID);
+
   /* Klik tombol WhatsApp = event Contact (dipakai untuk optimasi iklan Meta) */
   document.addEventListener("click", function (event) {
     var target = event.target;
@@ -36,6 +48,10 @@
     fbq("track", "Contact", {
       content_name: keBot ? "WhatsApp Bot" : "WhatsApp CS",
       content_category: location.pathname
+    });
+    gtag("event", "generate_lead", {
+      method: keBot ? "whatsapp_bot" : "whatsapp_cs",
+      page_path: location.pathname
     });
   }, true);
 })();
