@@ -21,10 +21,12 @@
   <title>Sewa PS Cireundeu Ciputat Timur | PS4 &amp; PS5 Antar | Eboni Space</title>
   <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://sewapscileungsi.com/#organization", "name": "Eboni Space", "url": "https://sewapscileungsi.com/", "logo": "https://sewapscileungsi.com/eboni.png"}, {"@type": "Service", "@id": "https://sewapscileungsi.com/cireundeu/#service", "name": "Sewa PS4 & PS5 Cireundeu", "serviceType": "Sewa PlayStation ke rumah (PS Box)", "provider": {"@id": "https://sewapscileungsi.com/#organization"}, "areaServed": {"@type": "Place", "name": "Cireundeu", "containedInPlace": {"@type": "AdministrativeArea", "name": "Kecamatan Ciputat Timur, Kota Tangerang Selatan"}}, "url": "https://sewapscileungsi.com/cireundeu/"}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Apakah Eboni Space punya pos di Cireundeu?", "acceptedAnswer": {"@type": "Answer", "text": "Ada. Eboni Space punya pos di Cireundeu, Ciputat Timur, sehingga PS bisa diantar ke rumah di Cireundeu dan sekitarnya tanpa menunggu kurir dari Cileungsi."}}, {"@type": "Question", "name": "Apakah Cireundeu gratis ongkir?", "acceptedAnswer": {"@type": "Answer", "text": "Ya. Gratis ongkir berlaku untuk alamat dalam radius 6 km dari pos Cireundeu. Kirim pin rumah, admin memastikan jaraknya sebelum booking."}}, {"@type": "Question", "name": "Rumah saya di Pondok Labu atau Lebak Bulus, bisa diantar?", "acceptedAnswer": {"@type": "Answer", "text": "Bisa. Area Jakarta Selatan yang berbatasan dengan Cireundeu dilayani dari pos Cireundeu. Bila jarak dari pos lebih dari 6 km, admin menginformasikan ongkirnya dulu."}}, {"@type": "Question", "name": "Bisa sewa PS beberapa jam saja?", "acceptedAnswer": {"@type": "Answer", "text": "Bisa. Paket 3 jam dan 6 jam tersedia dengan 2 stik. Cek harga di halaman harga."}}]}]}</script>
   <script src="https://analytics.ahrefs.com/analytics.js" data-key="S0Y03SkUJFdKje42ZWY4tQ" async></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&amp;family=Instrument+Sans:wght@400..700&amp;family=JetBrains+Mono:wght@500;600&amp;display=swap">
+  <link rel="preload" href="/assets/fonts/archivo-expanded-800.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/instrument-sans-var.woff2" as="font" type="font/woff2" crossorigin>
   <style>
+    @font-face{font-family:"Archivo";font-style:normal;font-weight:800;font-stretch:125%;font-display:swap;src:url(/assets/fonts/archivo-expanded-800.woff2) format("woff2")}
+    @font-face{font-family:"Instrument Sans";font-style:normal;font-weight:400 700;font-display:swap;src:url(/assets/fonts/instrument-sans-var.woff2) format("woff2")}
+    @font-face{font-family:"JetBrains Mono";font-style:normal;font-weight:500 600;font-display:swap;src:url(/assets/fonts/jetbrains-mono-500.woff2) format("woff2")}
     :root{
       --bg-000:#050a18;--bg-100:#060c1d;--surface-100:#0a1226;--surface-200:#0c1630;--surface-300:#0e2340;--control-100:#0a1328;
       --line-100:#1a2747;--line-200:#566a9a;--ink-900:#e8eeff;--ink-700:#a9b6d8;--ink-500:#8c9ac0;
@@ -45,7 +47,7 @@
     h1,h2,h3{text-wrap:balance;margin:0}
     p,li{text-wrap:pretty}
     a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var(--brand);outline-offset:2px;border-radius:6px}
-    .wrap{width:min(1280px,100%);margin:0 auto;padding:0 32px}
+    .wrap{width:min(1280px,100%);margin:0 auto;padding-left:32px;padding-right:32px}
     .display{font-family:var(--font-display);font-stretch:125%;font-weight:800;letter-spacing:-.025em;font-variant-numeric:tabular-nums}
     .eyebrow{font-family:var(--font-mono);font-size:12px;line-height:16px;font-weight:500;letter-spacing:.04em;text-transform:uppercase;color:#9fd9ff;margin:0}
     .gridbg{background-image:linear-gradient(var(--grid-line) 1px,transparent 1px),linear-gradient(90deg,var(--grid-line) 1px,transparent 1px);background-size:56px 56px}
@@ -268,7 +270,7 @@
     }
     @keyframes menuIn{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
     @media (max-width:720px){
-      .wrap{padding:0 16px}
+      .wrap{padding-left:16px;padding-right:16px}
       .nav .wrap{min-height:64px}
       .brand-logo-full{height:44px}
       .menu.open{top:64px}

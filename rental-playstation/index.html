@@ -46,6 +46,9 @@
   <meta name="twitter:card" content="summary_large_image">
 
   <title>Rental PS4 &amp; PS5 | Sewa PlayStation Eboni Space</title>
+  <link rel="preload" href="/assets/fonts/archivo-expanded-800.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/instrument-sans-var.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/eboni.css?v=1">
 
   <script type="application/ld+json">
   {
@@ -84,312 +87,6 @@
     ]
   }
   </script>
-
-  <style>
-    :root{
-      --bg:#050a18;
-      --panel:#0c1428;
-      --line:#1c2a48;
-      --text:#f1f5ff;
-      --muted:#a9b6d3;
-      --accent:#3fb8ff;
-      --dark:#03122a;
-      --radius:22px;
-    }
-
-    *{ box-sizing:border-box; }
-    html{ scroll-behavior:smooth; }
-
-    body{
-      margin:0;
-      font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-      background:var(--bg);
-      color:var(--text);
-      line-height:1.55;
-    }
-
-    a{ color:inherit; text-decoration:none; }
-
-    .wrap{
-      width:min(1120px,calc(100% - 40px));
-      margin:auto;
-    }
-
-    .nav{
-      position:sticky;
-      top:0;
-      z-index:10;
-      background:rgba(5,10,24,.9);
-      border-bottom:1px solid rgba(255,255,255,.07);
-      backdrop-filter:blur(14px);
-    }
-
-    .nav .wrap{
-      min-height:70px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:16px;
-    }
-
-    .brand{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      font-weight:850;
-      letter-spacing:.08em;
-    }
-
-    .brand-logo{
-      width:32px;
-      height:32px;
-      display:block;
-      object-fit:cover;
-      border-radius:50%;
-      border:2px solid var(--accent);
-      background:#0c1428;
-    }
-
-    .nav-links{
-      display:flex;
-      gap:20px;
-      font-size:14px;
-      color:var(--muted);
-    }
-
-    .nav-links a:hover{ color:var(--accent); }
-
-    .button{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:9px;
-      padding:13px 19px;
-      border:1px solid transparent;
-      border-radius:999px;
-      font-weight:750;
-      transition:.2s ease;
-      cursor:pointer;
-    }
-
-    .button.primary{ background:var(--accent); color:#03122a; }
-    .button.primary:hover{ transform:translateY(-2px); background:#7dd3ff; }
-    .button.ghost{ border-color:#34466b; color:var(--text); }
-    .button.ghost:hover{ border-color:var(--accent); color:var(--accent); }
-
-    .hero{
-      padding:88px 0 72px;
-      background:
-        radial-gradient(circle at 82% 15%,rgba(63,184,255,.18),transparent 28%),
-        radial-gradient(circle at 20% 0%,rgba(102,75,255,.15),transparent 25%);
-    }
-
-    .eyebrow{
-      margin:0 0 15px;
-      color:var(--accent);
-      font-size:13px;
-      font-weight:800;
-      letter-spacing:.13em;
-      text-transform:uppercase;
-    }
-
-    h1,h2,h3,p{ margin-top:0; }
-
-    h1{
-      max-width:820px;
-      margin-bottom:20px;
-      font-size:clamp(40px,6vw,76px);
-      line-height:1.03;
-      letter-spacing:-.055em;
-    }
-
-    h1 em{ color:var(--accent); font-style:normal; }
-
-    .lead{
-      max-width:700px;
-      margin-bottom:30px;
-      color:var(--muted);
-      font-size:clamp(17px,2vw,20px);
-    }
-
-    .hero-actions,.chips{ display:flex; flex-wrap:wrap; gap:12px; }
-    .chips{ gap:10px; margin-top:43px; }
-
-    .chip{
-      padding:8px 12px;
-      border:1px solid #2b3a5c;
-      border-radius:999px;
-      color:#c9d4ec;
-      font-size:13px;
-    }
-
-    section{ padding:76px 0; }
-
-    .section-head{
-      display:flex;
-      align-items:end;
-      justify-content:space-between;
-      gap:24px;
-      margin-bottom:27px;
-    }
-
-    h2{
-      margin-bottom:0;
-      font-size:clamp(28px,4vw,43px);
-      letter-spacing:-.04em;
-      line-height:1.08;
-    }
-
-    .section-head p{ max-width:520px; margin:0; color:var(--muted); }
-    .grid{ display:grid; gap:16px; }
-    .units{ grid-template-columns:repeat(2,1fr); }
-
-    .card{
-      padding:25px;
-      background:linear-gradient(145deg,#111b33,#0a1227);
-      border:1px solid var(--line);
-      border-radius:var(--radius);
-    }
-
-    .card-icon{
-      width:48px;
-      height:48px;
-      display:grid;
-      place-items:center;
-      margin-bottom:20px;
-      border-radius:14px;
-      background:#1a2742;
-      font-size:23px;
-    }
-
-    .card h3{ margin-bottom:8px; font-size:23px; }
-    .card p{ color:var(--muted); }
-    .card .button{ width:100%; margin-top:12px; padding:11px; font-size:14px; }
-
-    .content-link{ color:var(--accent); font-weight:800; }
-    .content-link:hover{ text-decoration:underline; }
-
-    .how{ grid-template-columns:repeat(4,1fr); }
-
-    .step{
-      padding:24px;
-      border-left:1px solid var(--line);
-    }
-
-    .step-number{
-      display:block;
-      margin-bottom:15px;
-      color:var(--accent);
-      font-size:13px;
-      font-weight:850;
-      letter-spacing:.12em;
-    }
-
-    .step h3{ margin-bottom:7px; font-size:18px; }
-    .step p{ margin:0; color:var(--muted); font-size:15px; }
-
-    .area{
-      background:#0a1122;
-      border-block:1px solid #1d3563;
-    }
-
-    .area-list{
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-      margin-top:24px;
-    }
-
-    .area-list a{
-      padding:10px 14px;
-      border-radius:10px;
-      background:#111f3d;
-      color:#d6ecff;
-      font-weight:650;
-    }
-
-    .area-list a:hover{ outline:1px solid var(--accent); color:var(--accent); }
-
-    .notice{
-      margin-top:24px;
-      padding:24px;
-      border:1px solid #22406e;
-      border-radius:var(--radius);
-      background:rgba(63,184,255,.06);
-      color:#cfe3ff;
-    }
-
-    .notice strong{ color:var(--accent); }
-    .faq{ grid-template-columns:1fr 1fr; }
-
-    details{
-      padding:19px 20px;
-      background:var(--panel);
-      border:1px solid var(--line);
-      border-radius:14px;
-    }
-
-    summary{ cursor:pointer; font-weight:720; }
-    details p{ margin:13px 0 0; color:var(--muted); font-size:15px; }
-
-    .cta{
-      padding:36px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:25px;
-      background:var(--accent);
-      color:#03122a;
-      border-radius:28px;
-    }
-
-    .cta h2{ max-width:650px; }
-    .cta .button{ background:#03122a; color:#eef3ff; white-space:nowrap; }
-
-    footer{ padding:32px 0 92px; color:#8796b8; font-size:14px; }
-
-    .footer-row{
-      display:flex;
-      justify-content:space-between;
-      gap:20px;
-      padding-top:26px;
-      border-top:1px solid var(--line);
-    }
-
-    .floating-wa{
-      position:fixed;
-      right:19px;
-      bottom:19px;
-      z-index:20;
-      box-shadow:0 9px 28px rgba(0,0,0,.35);
-    }
-
-    @media(max-width:780px){
-      .nav-links{ display:none; }
-      .units,.how,.faq{ grid-template-columns:1fr; }
-      .section-head,.cta,.footer-row{ align-items:start; flex-direction:column; }
-      .step{ border-left:0; border-top:1px solid var(--line); }
-      .step:first-child{ border-top:0; }
-      .hero{ padding-top:66px; }
-      section{ padding:58px 0; }
-    }
-  
-.brand{gap:0}
-.brand-logo-full{position:relative;display:inline-block;height:58px;line-height:0}
-.brand-logo-full img{height:100%;width:auto;display:block}
-.orbit-shine{position:absolute;inset:0;pointer-events:none;overflow:hidden;mix-blend-mode:screen;
-  -webkit-mask:url(/ring-mask.png) 0 0/100% 100% no-repeat;mask:url(/ring-mask.png) 0 0/100% 100% no-repeat}
-.orbit-shine::before{content:"";position:absolute;left:20.4%;top:48%;width:160%;aspect-ratio:1;
-  transform:translate(-50%,-50%) rotate(0deg);
-  background:conic-gradient(from 0deg,transparent 0deg 240deg,rgba(125,211,255,.35) 295deg,rgba(210,240,255,.95) 346deg,#fff 355deg,transparent 360deg);
-  animation:orbitSpin 3.2s linear 1s infinite}
-@keyframes orbitSpin{to{transform:translate(-50%,-50%) rotate(360deg)}}
-
-@media(max-width:780px){.brand-logo-full{height:44px}}
-@media(prefers-reduced-motion:reduce){.orbit-shine::before{animation:none}.orbit-shine{display:none}}
-.button.primary{background:linear-gradient(135deg,#46c2ff,#5a8dff);border-color:transparent;color:#03122a}
-.button.primary:hover{background:linear-gradient(135deg,#7dd3ff,#7ea6ff)}
-</style>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Apakah tersedia rental PlayStation PS4 dan PS5?", "acceptedAnswer": {"@type": "Answer", "text": "Ya. Eboni Space menyediakan pilihan PS4 dan PS5. Ketersediaan unit perlu dikonfirmasi kepada admin sesuai tanggal dan durasi sewa."}}, {"@type": "Question", "name": "Apakah tersedia rental PS4 untuk main di rumah?", "acceptedAnswer": {"@type": "Answer", "text": "Tersedia sesuai stok dan jadwal. Rental PS4 cocok untuk mabar bersama teman atau keluarga. Hubungi admin untuk mengecek unit, game, durasi, serta jangkauan pengantaran."}}, {"@type": "Question", "name": "Apakah tersedia rental PS5?", "acceptedAnswer": {"@type": "Answer", "text": "Tersedia sesuai ketersediaan unit. Sebelum booking sewa PS5, informasikan tanggal, durasi, lokasi pengantaran, dan game yang ingin dimainkan kepada admin Eboni Space."}}, {"@type": "Question", "name": "Apakah PlayStation bisa diantar ke rumah?", "acceptedAnswer": {"@type": "Answer", "text": "Pengantaran tersedia sesuai area, jadwal, dan jangkauan layanan. Kirim pin lokasi kepada admin untuk pengecekan."}}, {"@type": "Question", "name": "Apakah bisa memilih game?", "acceptedAnswer": {"@type": "Answer", "text": "Bisa. Cek daftar game di website lalu sampaikan game yang ingin dimainkan sebelum booking agar ketersediaannya dapat dikonfirmasi."}}, {"@type": "Question", "name": "Bagaimana cara booking rental PlayStation?", "acceptedAnswer": {"@type": "Answer", "text": "Hubungi admin melalui WhatsApp, pilih PS4 atau PS5, informasikan tanggal dan durasi, kirim pin lokasi, lalu konfirmasi unit, game, harga, dan jadwal pengantaran."}}, {"@type": "Question", "name": "Apakah tersedia rental PlayStation untuk beberapa hari?", "acceptedAnswer": {"@type": "Answer", "text": "Pilihan durasi sewa dapat dikonfirmasi langsung kepada admin sesuai paket dan ketersediaan unit."}}, {"@type": "Question", "name": "Bagaimana mengecek daftar game?", "acceptedAnswer": {"@type": "Answer", "text": "Gunakan fitur pencarian game pada homepage Eboni Space untuk mencari koleksi PS4, PS5, dan Nintendo Switch."}}]}</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Beranda", "item": "https://sewapscileungsi.com/"}, {"@type": "ListItem", "position": 2, "name": "Rental PlayStation", "item": "https://sewapscileungsi.com/rental-playstation/"}]}</script>
   <script src="/tracking.js" defer></script>
@@ -418,7 +115,8 @@
 
 <main>
   <section class="hero">
-    <div class="wrap">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
       <p class="eyebrow">Rental PlayStation Eboni Space</p>
 
       <h1>
@@ -435,11 +133,10 @@
       </p>
 
       <div class="hero-actions">
-        <a class="button primary" href="https://wa.me/6287816546467?text=Halo%20Eboni%20Space%2C%20saya%20mau%20rental%20PlayStation%20PS4%20atau%20PS5." target="_blank" rel="noopener">
-          💬 Cek Ketersediaan
+        <a class="button primary" href="https://wa.me/6287816546467?text=Halo%20Eboni%20Space%2C%20saya%20mau%20rental%20PlayStation%20PS4%20atau%20PS5." target="_blank" rel="noopener">Cek Ketersediaan
         </a>
 
-        <a class="button ghost" href="/#games">🎮 Lihat Game PS4 &amp; PS5</a>
+        <a class="button ghost" href="/#games">Lihat Game PS4 &amp; PS5</a>
         <a class="button ghost" href="#pilihan">Lihat Pilihan PS ↓</a>
       </div>
 
@@ -449,6 +146,34 @@
         <span class="chip">Pilihan Game</span>
         <span class="chip">Pengantaran</span>
         <span class="chip">Booking WhatsApp</span>
+      </div>
+    </div>
+      <div class="panel" role="group" aria-label="Rakit pesananmu" data-wa="6287816546467" data-area="">
+        <div class="panel-head"><p class="eyebrow">Rakit pesananmu</p><p class="eyebrow" style="color:var(--ink-500)">Antar ke rumah</p></div>
+        <div class="panel-body">
+          <div>
+            <p class="panel-label">1 · Konsol</p>
+            <div class="opts" role="group" aria-label="Konsol" data-group="konsol">
+              <button type="button" class="opt" aria-pressed="true" data-value="PS4"><b>PS4</b><span>Favorit mabar</span></button>
+              <button type="button" class="opt" aria-pressed="false" data-value="PS5"><b>PS5</b><span>Unit terbatas</span></button>
+            </div>
+          </div>
+          <div>
+            <p class="panel-label">2 · Durasi</p>
+            <div class="pchips" role="group" aria-label="Durasi" data-group="durasi"><button type="button" class="pchip" aria-pressed="false" data-value="3 jam">3 jam</button><button type="button" class="pchip" aria-pressed="true" data-value="6 jam">6 jam</button><button type="button" class="pchip" aria-pressed="false" data-value="12 jam">12 jam</button><button type="button" class="pchip" aria-pressed="false" data-value="24 jam">24 jam</button><button type="button" class="pchip" aria-pressed="false" data-value="2 hari">2 hari</button><button type="button" class="pchip" aria-pressed="false" data-value="3 hari">3 hari</button></div>
+          </div>
+          <button type="button" class="ptoggle" aria-pressed="false">
+            <span class="ptoggle-txt"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#9b8cff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="4" width="19" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg><span><b>Tambah TV 32 inci</b><small data-tv-help>Kalau TV di rumah tidak punya HDMI</small></span></span>
+            <span class="track"><span class="knob"></span></span>
+          </button>
+          <dl class="psummary">
+            <div><dt>Paket</dt><dd data-sum="paket">PS4 · 6 jam</dd></div>
+            <div><dt>Isi box</dt><dd data-sum="isi">2 stik + game</dd></div>
+            <div><dt>Ongkir</dt><dd class="mint">Gratis dalam radius pos terdekat</dd></div>
+          </dl>
+          <a class="button primary" data-order href="https://wa.me/6287816546467" target="_blank" rel="noopener" data-track-label="Kirim pesanan panel">Kirim pesanan ke WhatsApp <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <p class="fineprint">Harga final, game, dan jam antar dikonfirmasi admin setelah kamu kirim pin lokasi.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -466,7 +191,7 @@
 
       <div class="grid units">
         <article class="card">
-          <div class="card-icon">🕹️</div>
+          <div class="card-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="7" width="19" height="11" rx="5"/><path d="M7 10.5v4M5 12.5h4M15.5 11.5h.01M18 13.5h.01"/></svg></div>
           <h3>Rental PS4</h3>
           <p>
             PS4 cocok untuk main bersama teman atau keluarga,
@@ -479,7 +204,7 @@
         </article>
 
         <article class="card">
-          <div class="card-icon">⚡</div>
+          <div class="card-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"/></svg></div>
           <h3>Rental PS5</h3>
           <p>
             PS5 tersedia untuk pengalaman gaming generasi baru.
@@ -513,7 +238,7 @@
 
       <div class="grid units">
         <article class="card">
-          <div class="card-icon">🎮</div>
+          <div class="card-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="7" width="19" height="11" rx="5"/><path d="M7 10.5v4M5 12.5h4M15.5 11.5h.01M18 13.5h.01"/></svg></div>
           <h3>Rental PS4 untuk mabar</h3>
           <p>
             Rental PS4 cocok untuk bermain bersama teman dan keluarga.
@@ -527,7 +252,7 @@
         </article>
 
         <article class="card">
-          <div class="card-icon">⚡</div>
+          <div class="card-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"/></svg></div>
           <h3>Rental PS5 untuk hiburan akhir pekan</h3>
           <p>
             Sewa PS5 dapat menjadi pilihan untuk pengalaman gaming generasi
@@ -553,7 +278,7 @@
   <section id="cara-sewa">
     <div class="wrap">
       <div class="section-head">
-        <h2>Cara rental PlayStation di Eboni Space.</h2>
+        <div><p class="eyebrow">01 — Cara sewa</p><h2>Cara rental PlayStation di Eboni Space.</h2></div>
         <p>
           Proses booking dibuat sederhana agar unit,
           game, lokasi, dan jadwal dapat dikonfirmasi terlebih dahulu.
@@ -669,7 +394,7 @@
   <section id="faq">
     <div class="wrap">
       <div class="section-head">
-        <h2>FAQ rental PlayStation.</h2>
+        <div><p class="eyebrow">02 — FAQ</p><h2>FAQ rental PlayStation.</h2></div>
         <p>Beberapa pertanyaan umum sebelum menyewa PlayStation.</p>
       </div>
 
@@ -751,7 +476,7 @@
     <div class="wrap">
       <div class="cta">
         <div>
-          <p class="eyebrow" style="color:#12264a">Ready to play?</p>
+          <p class="eyebrow">Ready to play?</p>
           <h2>Booking rental PlayStation PS4 atau PS5 sekarang.</h2>
         </div>
 
@@ -764,24 +489,37 @@
 </main>
 
 <footer>
-  <div class="wrap footer-row">
-    <span>© <span id="year"></span> Eboni Space. Rental PlayStation PS4 &amp; PS5.</span>
-
-    <div>
-      <a href="https://www.instagram.com/ebonispace/" target="_blank" rel="noopener">Instagram @ebonispace</a>
-      &nbsp; • &nbsp;
-      <a href="https://www.tiktok.com/@ebonispace" target="_blank" rel="noopener">TikTok @ebonispace</a><a href="https://www.google.com/maps/place/?q=place_id:ChIJ26hbegCVaS4RzJwasIjFtwA" target="_blank" rel="noopener">Google Maps Eboni Space</a><a href="/kebijakan-privasi/">Kebijakan Privasi</a>
+  <div class="wrap foot">
+    <div class="foot-brand">
+      <img src="/logo-eboni-full.webp" alt="Eboni Space" width="263" height="100" loading="lazy" decoding="async">
+      <p>Sewa PS4 &amp; PS5 antar ke rumah dari pos Cileungsi, Gunung Putri, dan Cireundeu.</p>
+    </div>
+    <div class="foot-cols">
+      <div class="foot-col">
+        <p class="eyebrow">Layanan</p>
+        <a href="/sewa-ps-harian/">Sewa PS harian</a>
+        <a href="/rental-playstation/">Rental PlayStation</a>
+        <a href="/harga-sewa-ps-eboni-space/">Harga sewa PS4</a>
+        <a href="/artikel/">Artikel &amp; tips</a>
+      </div>
+      <div class="foot-col">
+        <p class="eyebrow">Ikuti</p>
+        <a href="https://www.instagram.com/ebonispace/" target="_blank" rel="noopener">Instagram @ebonispace</a>
+        <a href="https://www.tiktok.com/@ebonispace" target="_blank" rel="noopener">TikTok @ebonispace</a>
+        <a href="https://www.google.com/maps/place/?q=place_id:ChIJ26hbegCVaS4RzJwasIjFtwA" target="_blank" rel="noopener">Google Maps Eboni Space</a>
+        <a href="/kebijakan-privasi/">Kebijakan Privasi</a>
+      </div>
     </div>
   </div>
+  <div class="wrap copy">© <span id="year"></span> Eboni Space. Rental PlayStation PS4 &amp; PS5.</div>
 </footer>
 
-<a class="button primary floating-wa" href="https://wa.me/6287816546467?text=Halo%20Eboni%20Space%2C%20saya%20mau%20tanya%20rental%20PlayStation." target="_blank" rel="noopener" aria-label="Chat Eboni Space melalui WhatsApp">
-  💬 WhatsApp
-</a>
+<div class="actionbar"><a class="button primary" href="https://wa.me/6287816546467?text=Halo%20Eboni%20Space%2C%20saya%20mau%20tanya%20rental%20PlayStation." target="_blank" rel="noopener"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8.5 8.5 0 0 1-12.6 7.4L3 21l1.6-5.3A8.5 8.5 0 1 1 21 12z"/></svg>WhatsApp</a><a class="button ghost" href="https://wa.me/6283187916091?text=MENU" target="_blank" rel="noopener">Booking bot</a></div>
 
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
 </script>
 
+<script src="/assets/eboni.js?v=1" defer></script>
 </body>
 </html>
