@@ -1,0 +1,101 @@
+/* =========================================================
+   Eboni Space — lapisan animasi (Midnight Console)
+   Aktif hanya bila <html class="motion"> (dipasang eboni-motion.js)
+   dan perangkat tidak meminta "kurangi gerakan".
+   Semua gerak memakai transform/opacity agar ringan di HP.
+   ========================================================= */
+
+@property --fill{syntax:"<percentage>";inherits:false;initial-value:0%}
+
+/* ---------- Hero: atmosfer ---------- */
+html.motion .hero{position:relative;overflow:hidden;background-image:none;isolation:isolate}
+html.motion .hero::after{content:"";position:absolute;inset:-56px;z-index:-1;pointer-events:none;
+  background-image:linear-gradient(var(--grid-line) 1px,transparent 1px),linear-gradient(90deg,var(--grid-line) 1px,transparent 1px);background-size:56px 56px;
+  animation:m-grid 26s linear infinite;will-change:transform}
+html.motion .hero-glow{position:absolute;left:0;top:0;z-index:-1;width:560px;height:560px;margin:-280px 0 0 -280px;border-radius:50%;pointer-events:none;
+  background:radial-gradient(circle,rgba(63,193,255,.16),rgba(155,140,255,.06) 45%,transparent 70%);
+  transform:translate3d(var(--gx,70vw),var(--gy,220px),0);transition:transform .9s cubic-bezier(.2,.7,.2,1);will-change:transform}
+@media (hover:none){html.motion .hero-glow{animation:m-drift 18s ease-in-out infinite alternate;transition:none}}
+@keyframes m-grid{to{transform:translate3d(56px,56px,0)}}
+@keyframes m-drift{0%{transform:translate3d(78vw,140px,0)}50%{transform:translate3d(30vw,420px,0)}100%{transform:translate3d(85vw,620px,0)}}
+
+/* ---------- Hero: urutan masuk ---------- */
+html.motion .hero-copy > *,
+html.motion .hero > .wrap:not(.hero-grid) > *{animation:m-in .75s cubic-bezier(.2,.7,.2,1) both;animation-delay:calc(var(--d,0) * 70ms + 40ms)}
+html.motion .panel{animation:m-rise .9s cubic-bezier(.2,.7,.2,1) .28s both,m-glow 2.6s ease-out 1.15s 1}
+@keyframes m-in{from{opacity:0;transform:translateY(14px);filter:blur(6px)}to{opacity:1;transform:none;filter:none}}
+@keyframes m-rise{from{opacity:0;transform:translateY(28px) scale(.98)}to{opacity:1;transform:none}}
+@keyframes m-glow{0%,100%{box-shadow:var(--shadow-glow)}35%{box-shadow:0 40px 140px -30px rgba(63,193,255,.55),0 0 0 1px rgba(63,193,255,.55)}}
+
+/* Kata berwarna di judul: kilau sekali lewat */
+html.motion .hero h1 em{background:linear-gradient(100deg,var(--brand) 0 38%,#eaf8ff 50%,var(--brand) 62% 100%) 100% 0/260% 100% no-repeat;
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:m-shine 1.5s ease-out .95s both}
+@keyframes m-shine{from{background-position:100% 0}to{background-position:0 0}}
+
+/* ---------- Tombol ---------- */
+html.motion .button.primary{overflow:hidden}
+html.motion .button.primary::after{content:"";position:absolute;inset:0;pointer-events:none;border-radius:inherit;
+  background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.5) 50%,transparent 70%);transform:translateX(-130%)}
+@media (hover:hover){html.motion .button.primary:hover::after{transition:transform .75s ease-out;transform:translateX(130%)}}
+html.motion .hero .button.primary::after{animation:m-sweep 1s ease-out 1.9s 1}
+html.motion .panel .button.primary::after{animation:m-sweep-loop 6s ease-out 2.6s infinite}
+@keyframes m-sweep{from{transform:translateX(-130%)}to{transform:translateX(130%)}}
+@keyframes m-sweep-loop{0%{transform:translateX(-130%)}16%,100%{transform:translateX(130%)}}
+
+/* ---------- Panel pesanan ---------- */
+html.motion .pchip[aria-pressed="true"],html.motion .opt[aria-pressed="true"]{animation:m-pop .28s cubic-bezier(.2,.9,.3,1.3)}
+@keyframes m-pop{0%{transform:scale(.93)}100%{transform:scale(1)}}
+html.motion .psummary dd.flash{animation:m-flash .35s ease-out}
+@keyframes m-flash{from{opacity:.2;filter:blur(4px);transform:translateY(-3px)}to{opacity:1;filter:none;transform:none}}
+
+/* ---------- Muncul saat di-scroll ---------- */
+html.motion [data-r].r-wait{opacity:0}
+html.motion [data-r].r-in{animation:m-reveal .75s cubic-bezier(.2,.7,.2,1) both;animation-delay:calc(var(--i,0) * 55ms)}
+@keyframes m-reveal{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+
+/* Angka langkah terisi dari bawah */
+html.motion .step-number{background:linear-gradient(var(--brand),var(--brand)) 0 100%/100% var(--fill) no-repeat;-webkit-background-clip:text;background-clip:text;
+  transition:--fill .9s cubic-bezier(.2,.7,.2,1);transition-delay:calc(var(--i,0) * 180ms + 150ms)}
+html.motion .step:first-child .step-number{color:transparent;-webkit-text-stroke:1.5px var(--brand)}
+html.motion .how.r-fill .step-number{--fill:100%}
+
+/* ---------- Kartu: angkat + sorot kursor (desktop) ---------- */
+@media (hover:hover){
+  html.motion .card,html.motion .article-card,html.motion .related-card{transition:transform .35s cubic-bezier(.2,.7,.2,1),border-color .25s ease-out,box-shadow .35s ease-out}
+  html.motion .card:hover,html.motion .article-card:hover,html.motion .related-card:hover{transform:translateY(-4px);border-color:#2a3e6e}
+  html.motion .card::after,html.motion .article-card::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .3s ease-out;
+    background:radial-gradient(380px circle at var(--sx,50%) var(--sy,50%),rgba(63,193,255,.09),transparent 60%)}
+  html.motion .card:hover::after,html.motion .article-card:hover::after{opacity:1}
+  html.motion .article-card{position:relative}
+  html.motion .promo-card .promo-image{transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+  html.motion .promo-card:hover .promo-image{transform:scale(1.04)}
+  html.motion .card-icon{transition:transform .35s cubic-bezier(.2,.9,.3,1.3)}
+  html.motion .card:hover .card-icon{transform:translateY(-2px) rotate(-6deg)}
+  html.motion .area-list a,html.motion .areas a{transition:border-color .2s,color .2s,transform .2s ease-out}
+  html.motion .area-list a:hover,html.motion .areas a:hover{transform:translateY(-2px)}
+}
+
+/* ---------- Header, menu, modal, FAQ ---------- */
+html.motion .nav{transition:box-shadow .3s ease-out,border-color .3s ease-out}
+html.motion .nav.scrolled{box-shadow:0 12px 30px -14px rgba(0,0,0,.7);border-bottom-color:#1a2747}
+html.motion .popup-menu.open a{animation:m-slide .32s cubic-bezier(.2,.7,.2,1) both;animation-delay:calc(var(--i,0) * 30ms)}
+@keyframes m-slide{from{opacity:0;transform:translateX(-10px)}to{opacity:1;transform:none}}
+html.motion .modal.open .modal-box{animation:m-modal .4s cubic-bezier(.2,.8,.2,1)}
+@keyframes m-modal{from{opacity:0;transform:translateY(16px) scale(.97)}to{opacity:1;transform:none}}
+html.motion details[open] > p{animation:m-down .35s ease-out}
+@keyframes m-down{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+
+/* ---------- Bar WhatsApp HP muncul setelah scroll ---------- */
+@media (max-width:720px){
+  html.motion .actionbar{transform:translateY(115%);transition:transform .4s cubic-bezier(.2,.7,.2,1)}
+  html.motion .actionbar.show{transform:none}
+}
+
+/* ---------- Progres baca artikel ---------- */
+.read-progress{position:fixed;left:0;right:0;top:0;z-index:45;height:3px;pointer-events:none;background:var(--brand);transform-origin:0 50%;transform:scaleX(0)}
+
+@media (prefers-reduced-motion:reduce){
+  html.motion *{animation:none !important;transition:none !important}
+  html.motion [data-r].r-wait{opacity:1}
+  .read-progress{display:none}
+}
